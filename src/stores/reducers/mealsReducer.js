@@ -26,11 +26,10 @@ const initialState = {
             { name: "Squat", kcal: 30 },
         ]
     }
-
 }
 
 
-const userReducer = (state = initialState, action) => {
+const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
         default: return state
     }
