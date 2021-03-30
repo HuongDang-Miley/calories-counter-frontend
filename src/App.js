@@ -32,8 +32,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    meals: state.user.meals,
-    workout: state.user.workout,
+   state
   }
 }
 

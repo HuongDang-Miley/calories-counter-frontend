@@ -5,15 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { combineReducers, createStore } from 'redux'
-import loginReducer from './stores/loginReducer'
+import mealsReducer from './stores/reducers/mealsReducer'
+import workoutReducer from './stores/reducers/workoutReducer'
+import loginReducer from './stores/reducers/loginReducer'
 
 
+const mealsStore = createStore(mealsReducer)
 
-const userStore = createStore(userReducer)
+const rootStore = combineReducers({
+  meals_Reducer: mealsReducer,
+  login_Reducer: loginReducer,
+  workout_Reducer: workoutReducer
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={userStore}>
+    <Provider store ={mealsStore}>
       <App />
     </Provider>
   </React.StrictMode>,
