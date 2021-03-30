@@ -1,38 +1,59 @@
+* {
+  box-sizing: border-box;
+  height: 100%;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #F3F4F5;
+  height: 100%;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: row;
+}
+
+.sidebar-wrapper {
+  background-color: #363740;
   color: white;
+  padding: 24px 32px 24px 32px; 
+  width: 255px;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.main-wrapper {
+  background-color: #F3F4F5;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CaloriesCounter-wrapper {
+  padding: 24px 32px 24px 32px; 
+  height: 98px;
+  grid-area: tracker;
+  background-color: white;
+  margin-bottom: 30px;
+  box-shadow: 0px 1px 0px #E1E2E8;
 }
+
+.cards-wrapper {
+  grid-area: cards; 
+  display: grid;
+  grid-template-columns: 1ft 1ft 1ft 1ft 1ft;
+  grid-template-areas: 'meals meals meals workout workout';
+  margin-left: 30px;
+}
+
+.meals-wrapper {
+  grid-area: meals; 
+  background-color: white;
+  margin-right: 8px;
+  padding: 24px 32px 24px 32px; 
+  overflow: scroll;
+}
+
+.workout-wrapper {
+  grid-area: workout;
+  background-color: white;
+  padding: 24px 32px 24px 32px; 
+  overflow: scroll;
+  margin-right: 40px;
+}
+

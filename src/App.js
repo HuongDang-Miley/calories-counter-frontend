@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import { useRef } from 'react'
+import { connect } from 'react-redux'
+import Meals from './components/meals/Meals'
+import Workout from './components/workout/Workout'
+import Sidebar from './components/sidebar/Sidebar'
+import CaloriesCounter from './components/caloriesCounter/CaloriesCounter'
 
-function App() {
+const App = (props) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='sidebar-wrapper' >
+        <Sidebar />
+      </div>
+      <div className='main-wrapper'>
+        <div className='CaloriesCounter-wrapper' >
+          <CaloriesCounter />
+        </div>
+        <div className='cards-wrapper'>
+          <div className='meals-wrapper'>
+            <Meals />
+          </div>
+          <div className='workout-wrapper'>
+            <Workout />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    meals: state.user.meals,
+    workout: state.user.workout,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
