@@ -8,19 +8,21 @@ import { combineReducers, createStore } from 'redux'
 import mealsReducer from './stores/reducers/mealsReducer'
 import workoutReducer from './stores/reducers/workoutReducer'
 import loginReducer from './stores/reducers/loginReducer'
+import calCounterReducer from './stores/reducers/calCounterReducer'
 
 
-const mealsStore = createStore(mealsReducer)
 
-const rootStore = combineReducers({
+const rootReducer = combineReducers({
   meals_Reducer: mealsReducer,
   login_Reducer: loginReducer,
-  workout_Reducer: workoutReducer
+  workout_Reducer: workoutReducer,
+  cal_couter_Reducer: calCounterReducer,
 })
 
+const rootStore = createStore(rootReducer)
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store ={mealsStore}>
+    <Provider store ={rootStore}>
       <App />
     </Provider>
   </React.StrictMode>,

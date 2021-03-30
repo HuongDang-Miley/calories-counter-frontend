@@ -3,6 +3,7 @@ const initialState = {
 
     meals: [
         {
+            id: uuidv4(),
             type: 'Breakfast',
             food: [
                 { name: 'Egg', kcal: 70 },
@@ -11,6 +12,7 @@ const initialState = {
             ]
         },
         {
+            id: uuidv4(),
             type: 'Snack',
             food: [
                 { name: 'Protein Bar', kcal: 100 },
