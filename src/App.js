@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Meals from './components/meals/Meals'
 import Workout from './components/workout/Workout'
 import Sidebar from './components/sidebar/Sidebar'
-import CaloriesCounter from './components/caloriesCounter/CaloriesCounter'
+import TopNav from './components/topNav/TopNav'
 
 const App = (props) => {
   return (
@@ -13,8 +13,8 @@ const App = (props) => {
         <Sidebar />
       </div>
       <div className='main-wrapper'>
-        <div className='CaloriesCounter-wrapper' >
-          <CaloriesCounter />
+        <div className='TopNav-wrapper' >
+          <TopNav />
         </div>
         <div className='cards-wrapper'>
           <div className='meals-wrapper'>

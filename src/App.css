@@ -24,9 +24,9 @@
   width: 100%;
 }
 
-.CaloriesCounter-wrapper {
-  padding: 24px 32px 24px 32px; 
-  height: 98px;
+.TopNav-wrapper {
+  padding: 12px 32px 12px 32px; 
+  height: 48px;
   grid-area: tracker;
   background-color: white;
   margin-bottom: 30px;
@@ -36,8 +36,8 @@
 .cards-wrapper {
   grid-area: cards; 
   display: grid;
-  grid-template-columns: 1ft 1ft 1ft 1ft 1ft;
-  grid-template-areas: 'meals meals meals workout workout';
+  grid-template-columns: 1ft 1ft;
+  grid-template-areas: 'meals workout';
   margin-left: 30px;
 }
 
