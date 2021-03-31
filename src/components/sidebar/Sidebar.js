@@ -1,9 +1,13 @@
 import React from 'react'
+import './sidebar.css'
 
-export default function Sidebar() {
+export const Sidebar=(props)=> {
+    console.log(props);
+    
     return (
         <div>
-            <p>Sidebar</p>
+            
+            <button className='sidebar-button'>Register</button>
             <p>Sidebar</p>
             <p>Sidebar</p>
             <p>Sidebar</p>

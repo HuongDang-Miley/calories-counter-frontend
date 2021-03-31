@@ -1,38 +1,43 @@
+import { useState, createRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 const initialState = {
-    user: {
-        id: uuidv4(),
-        email: 'Tom@email.com',
-        password: '123',
-        meals: [
-            {
-                type: 'Breakfast',
-                food: [
-                    { name: 'Egg', kcal: 70 },
-                    { name: 'Latte', kcal: 50 },
-                    { name: 'Bread', kcal: 100 },
-                ]
-            },
-            {
-                type: 'Snack',
-                food: [
-                    { name: 'Protein Bar', kcal: 100 },
-                    { name: 'Diet Coke', kcal: 10 },
-                ]
-            },
-        ],
-        workout: [
-            { name: "Jumping Jack", kcal: 100 },
-            { name: "Squat", kcal: 30 },
-        ]
-    }
-}
+  loggedIn: false,
+  token: "",
+};
 
+const loginReducer = async (state = initialState, action) => {
+  // console.log(action);
 
-const loginReducer = (state = initialState, action) => {
-    switch (action.type) {
-        default: return state
-    }
-}
+  switch (action.type) {
+    case "REGISTER":
+      try {
+        const send = await axios
+          .post("http://localhost:4000/api/users/register", action.newUser)
+          .then((res) => console.log(res.data));
+        console.log(send.data.message);
+        //how to display successful signup message
+        // alert(console.log(res.data.message));
+        
+      } catch (e) {
+        console.log(e);
+      }
 
-export default loginReducer
+      //   console.log(action.newUser);
+
+      return state;
+    
+    case 'LOGIN':
+        try {
+            const login = await axios.post('http://localhost:4000/api/users/login', action.user)
+            .then((res)=>console.log(res.data))
+        } catch (e) {
+            console.log(e);
+            
+        }
+    default:
+      return state;
+  }
+};
+
+export default loginReducer;

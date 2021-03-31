@@ -1,0 +1,11 @@
+/* need more css */
+.login-box{
+    display: grid;
+    grid-template-rows: auto;
+    border: 2px solid black;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    padding: 5vh;
+    
+}
