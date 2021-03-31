@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function CaloriesCounter() {
+export default function TopNav() {
     return (
         <div>
-            CaloriesCounter
+            TopNav
         </div>
     )
 }

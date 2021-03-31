@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -14,6 +15,15 @@ import { Sidebar } from "./components/sidebar/Sidebar";
 import CaloriesCounter from "./components/caloriesCounter/CaloriesCounter";
 import { Login } from "./components/login/Login";
 import { Register } from "./components/register/Register";
+=======
+import './App.css';
+import { useRef } from 'react'
+import { connect } from 'react-redux'
+import Meals from './components/meals/Meals'
+import Workout from './components/workout/Workout'
+import Sidebar from './components/sidebar/Sidebar'
+import TopNav from './components/topNav/TopNav'
+>>>>>>> 1315d057290efe9a0092ca9d656ce9c1b35c7161
 
 const App = (props) => {
   // console.log(props.state.login_Reducer);
@@ -39,6 +49,7 @@ const App = (props) => {
       <Router>
         {/* <Register login_Reducer={login_Reducer} register={props.register}/> */}
         <Sidebar />
+<<<<<<< HEAD
 
         <Switch>
           {/* <Route exact path='/' ><Home/></Route> */}
@@ -52,6 +63,15 @@ const App = (props) => {
 
           <PrivateRoute>
             <CaloriesCounter />
+=======
+      </div>
+      <div className='main-wrapper'>
+        <div className='TopNav-wrapper' >
+          <TopNav />
+        </div>
+        <div className='cards-wrapper'>
+          <div className='meals-wrapper'>
+>>>>>>> 1315d057290efe9a0092ca9d656ce9c1b35c7161
             <Meals />
             <Workout />
           </PrivateRoute>
