@@ -21,27 +21,12 @@ const App = (props) => {
           <div className='meals-wrapper'>
             <Meals />
           </div>
+        
           <div className='workout-wrapper'>
-          <div className ='workout-header'>
-            <h3>WORKOUT</h3>
-
-          </div>
-          <div className = 'calories-header'>
-            <h4>CALORIES BURNT</h4>
-          </div>
-            {/* <button onClick ={props.toggleField }></button> */}
-            
-            <input className="add-workout" placeholder="type workout"></input><input></input>
-            
-            {props.workouts.workoutArray.map((currWork)=>(
-              <div>
-                <button className="delete-workout-button" onClick={()=>props.deleteWorkout(currWork.id)}>X</button>
-                <u>{currWork.name}</u>
-                {currWork.kcal}
-
-              </div>
-            ))}
-          </div>
+           <Workout deleteWorkout={props.deleteWorkout}
+           toggleField={props.toggleField}
+           workouts= {props.workouts}/>
+         </div>
         </div>
       </div>
     </div>

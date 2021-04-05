@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 const initialState = {
-    workoutArray: [
+    workouts: [
         { name: "Jumping Jack", cal: 100, id: uuidv4() },
         { name: "Squat", cal: 30, id: uuidv4() },
     ],
@@ -30,7 +30,7 @@ const workoutReducer = (state = initialState, action) => {
         });
         return {
             ...state,
-            workoutArray : newArr
+            workouts : newArr
         }
         
             
