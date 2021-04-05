@@ -12,20 +12,29 @@ const initialState = {
 
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "ADD_WORK":
-            return{
-
-            }
-        
         case "TOGGLE_FIELD":
             const text =(state.showAdd ?  "Show" : "Hide")
             return{
                 ...state,
                 showAdd:!state.showAdd,
                 buttonText:text
-
+                
             }
-
+            // adding new workout
+            case "ADD_WORK":
+                const newWorkout = {
+                    name:action.newNAme,
+                    cal:action.newCal,
+                    id:uuidv4()
+                }
+                console.log(newWorkout);
+    
+                return{
+                    ...state,
+                    workouts:[...state.workouts, newWorkout]
+    
+                }
+            
 
         case "DELETE_WORK":
         const newArr = state.workouts.filter((currEl)=>{
