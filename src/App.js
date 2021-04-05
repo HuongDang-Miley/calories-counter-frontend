@@ -1,84 +1,68 @@
-<<<<<<< HEAD
 import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
+  Link,
 } from "react-router-dom";
 
-import { useRef, useEffect } from "react";
-import { connect } from "react-redux";
+import { useEffect } from "react";
+import { connect, Provider } from "react-redux";
 import Meals from "./components/meals/Meals";
-import Workout from "./components/workout/Workout";
+import { Workout } from "./components/workout/Workout";
 import { Sidebar } from "./components/sidebar/Sidebar";
-import CaloriesCounter from "./components/caloriesCounter/CaloriesCounter";
-import { Login } from "./components/login/Login";
-import { Register } from "./components/register/Register";
-=======
-import './App.css';
-import { useRef } from 'react'
-import { connect } from 'react-redux'
-import Meals from './components/meals/Meals'
-import Workout from './components/workout/Workout'
-import Sidebar from './components/sidebar/Sidebar'
-import TopNav from './components/topNav/TopNav'
->>>>>>> 1315d057290efe9a0092ca9d656ce9c1b35c7161
+// import CaloriesCounter from "./components/caloriesCounter/CaloriesCounter";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import Home from "./components/home/Home";
+import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
+import {TopNav} from "./components/topNav/TopNav";
+import { NotFound } from "./components/notFound/NotFound";
+import { stayUp } from "./stores/actions/authActionCreator";
 
 const App = (props) => {
-  // console.log(props.state.login_Reducer);
+  console.log(props.state);
 
-  const { state } = props; //destructuring props from store
+  useEffect(() => {
+    let getToken = localStorage.getItem("jwtToken");
+    props.stayUp(getToken);
 
-  const { login_Reducer } = state; //destructuring state from props
-  // console.log(login_Reducer);
-  const login = () => {
-    return (
-      <div>
-        <input placeholder="email"></input>
-      </div>
-    );
-  };
+    // console.log(getToken)
+  }, []);
 
-  // useEffect(() => {
-  //   if (props.login_reducer.token) {
-  //   }
-  // }, [input]);
   return (
     <div>
+      {/* <Provider store={store}> */}
+
       <Router>
-        {/* <Register login_Reducer={login_Reducer} register={props.register}/> */}
-        <Sidebar />
-<<<<<<< HEAD
+        {/* <Link to="/register">Register here</Link>
+        <br></br>
+      <Link to="/login">login</Link> */}
 
         <Switch>
-          {/* <Route exact path='/' ><Home/></Route> */}
-          <Route exact path="/register">
-            <Register login_Reducer={login_Reducer} register={props.register} />
-          </Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          {/* why different color in components below */}
+          
+          {/* <PrivateRoute exact path="/nav" component={TopNav} /> */}
+          <Route exact path="/nav" component={TopNav} />
+          <Route exact path="/sidebar" component={Sidebar} />
+          <Route exact path="/meals" component={Meals} />
 
-          <Route exact path="/login">
-            <Login />
-          </Route>
+          <Route path="" component={NotFound} />
+          {/* <PrivateRoute exact path="/main"  component={Workout}/>  */}
+          {/* <TopNav/>
+          <Sidebar/>
+          <Meals/>
+          <Workout/>
+          </PrivateRoute > */}
 
-          <PrivateRoute>
-            <CaloriesCounter />
-=======
-      </div>
-      <div className='main-wrapper'>
-        <div className='TopNav-wrapper' >
-          <TopNav />
-        </div>
-        <div className='cards-wrapper'>
-          <div className='meals-wrapper'>
->>>>>>> 1315d057290efe9a0092ca9d656ce9c1b35c7161
-            <Meals />
-            <Workout />
-          </PrivateRoute>
-
-          {/* <PrivateRoute/> */}
+          {/* <PrivateRoute /> */}
         </Switch>
       </Router>
+      {/* </Provider> */}
 
       {/* {props.state.login_Reducer.loggedIn ? (
         <div className="App">
@@ -118,21 +102,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    register: (username, email, password, time) =>
-      dispatch({
-        type: "REGISTER",
-        newUser: {
-          username: username,
-          email: email,
-          password: password,
-          // time: time,
-        },
-      }),
-    login: (email, password) =>
-      dispatch({ type: "LOGIN", user: { email: email, password: password } }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { stayUp })(App);

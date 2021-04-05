@@ -1,40 +1,69 @@
 import { useState, createRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import * as actionTypes from "../actions/actionTypes";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 const initialState = {
-  loggedIn: false,
+  isAuth: false,
   token: "",
+  registerMessage: "",
+  loginMessage: "",
+  user: {},
 };
 
-const loginReducer = async (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
   // console.log(action);
 
   switch (action.type) {
-    case "REGISTER":
-      try {
-        const send = await axios
-          .post("http://localhost:4000/api/users/register", action.newUser)
-          .then((res) => console.log(res.data));
-        console.log(send.data.message);
-        //how to display successful signup message
-        // alert(console.log(res.data.message));
-        
-      } catch (e) {
-        console.log(e);
+    case actionTypes.AUTH_USER_REGISTER_SUCCESSFUL: //case----------------------register
+      return {
+        ...state,
+        registerMessage: action.message,
+      };
+
+    case actionTypes.AUTH_USER_SIGN_IN_SUCCESSFUL: //case---------------------- sign in
+      // console.log(action);
+      let decoded = jwtDecode(action.message);
+
+      console.log("decoded", decoded);
+      return {
+        ...state,
+        isAuth: true,
+        user: {
+          email: decoded.email,
+          username: decoded.username,
+          id: decoded.id,
+        },
+      };
+
+    case actionTypes.AUTH_USER_SIGN_IN_FAILURE: //case------------------------ sign in failure
+      return {
+        ...state,
+        registerMessage: action.message,
+      };
+
+    case actionTypes.AUTH_USER_STAY_UP://-------------------------------jwt decode email and username
+      console.log(action);
+
+      return {
+        ...state,
+        isAuth: true,
+        user: {
+          email: action.message.email,
+          username: action.message.username,
+          id: action.message.id,
+        },
+      };
+    
+    //case logout------------------------------------------------------logout remove jwt
+    case actionTypes.AUTH_USER_LOGOUT:
+      
+      return{
+        ...state,
+        isAuth:false,
+        user:{}
       }
 
-      //   console.log(action.newUser);
-
-      return state;
-    
-    case 'LOGIN':
-        try {
-            const login = await axios.post('http://localhost:4000/api/users/login', action.user)
-            .then((res)=>console.log(res.data))
-        } catch (e) {
-            console.log(e);
-            
-        }
     default:
       return state;
   }

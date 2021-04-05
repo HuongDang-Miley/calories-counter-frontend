@@ -1,5 +1,6 @@
 import React from 'react'
 import './sidebar.css'
+import { connect, Provider } from "react-redux";
 
 export const Sidebar=(props)=> {
     console.log(props);
@@ -7,7 +8,7 @@ export const Sidebar=(props)=> {
     return (
         <div>
             
-            <button className='sidebar-button'>Register</button>
+            
             <p>Sidebar</p>
             <p>Sidebar</p>
             <p>Sidebar</p>
@@ -17,3 +18,14 @@ export const Sidebar=(props)=> {
         </div>
     )
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+      newState: state.login_Reducer,
+    };
+  };
+  
+  
+  export default connect(mapStateToProps, )(Sidebar);
+  
