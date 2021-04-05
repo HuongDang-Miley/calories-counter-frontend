@@ -3,94 +3,67 @@ import FoodCard from '../foodCard/FoodCard.js'
 import './mealcard.css'
 export default function MealCard(props) {
     const [showEdit, setShowEdit] = useState(false)
-    const [food, setFood] = useState('')
-    const [cal, setCal] = useState('')
-    const foodRef = useRef()
-    const calRef = useRef()
+    let foodRef = useRef()
+    let calRef = useRef()
 
-    const handleSubmitFood = (event) => {
-        event.preventDefault();
+
+    const handleAddFood = (food, cal) => {
         if (!food || !cal) {
             alert('Field Cannot Be Emtpy')
         } else {
             props.addFood(props.item.id, food, cal)
-            setFood('')
-            setCal('')
+            foodRef.current.value = ''
+            calRef.current.value = ''
         }
-    }
-
-    const handleInputChange = (food, cal) => {
-        setFood(food)
-        setCal(cal)
     }
 
     return (
         <div className='meal-card'>
             <table>
+                {/* ======================================= Display Meal Type ======================================= */}
                 <tr>
-                    <th>Food</th>
+                    <th>{showEdit
+                        ? <input placeholder={props.item.type} ref={foodRef}></input>
+                        : props.item.type}
+                    </th>
                     <th>Cal</th>
-                    <th>Edit</th>
-                    <th>Del</th>
-                </tr>
-                <tr>
-                    <td>Chicken</td>
-                    <td>20</td>
-                    <td>Edit</td>
-                    <td>Del</td>
-                </tr>
-            </table>
-            {/* ======================================= Display Meal Type ======================================= */}
-            <div>
-                {showEdit
-                    ? <span>
-                        <input placeholder={props.item.type} ref={foodRef}></input>
-                        <span> cal </span>
-                        <button onClick={() => {
+                    <th>{showEdit
+                        ? <button onClick={() => {
                             props.editMeal(props.item.id, foodRef.current.value)
                             setShowEdit(!showEdit)
-                        }}>√</button>
-                    </span>
-                    : <span>
-                        <span>{props.item.type}</span>
-                        <span> cal </span>
-                        <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
-                    </span>
-                }
-                <button onClick={() => props.deleteMeal(props.item.id)}>Delete</button>
-            </div>
+                        }}>Save</button>
+                        : <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
+                    }
+                    </th>
+                    <th><button onClick={() => props.deleteMeal(props.item.id)}>Delete</button></th>
+                </tr>
 
-            {/* ======================================= Display Food List ======================================= */}
-            {props.item.food.map(item => (
-                // <div key={item.id}>
-                <FoodCard
+                {/* ======================================= Display Food List ======================================= */}
+                {props.item.food.map(item => (
+                    <FoodCard
                     key={item.id}
                     mealId={props.item.id}
                     item={item}
                     deleteFood={props.deleteFood}
                     editFood={props.editFood}
                 />
-                // </div>
-            ))}
-            {/* ======================================= Display Add New Food Section ======================================= */}
-            <div className='addfood-wrapper'>
-                <form className='add-food'
-                    onChange={() => handleInputChange(foodRef.current.value, calRef.current.value)}
-                    onSubmit={handleSubmitFood}
-                >
-                    <input className='food-input' type='text' ref={foodRef}></input>
-                    <input className='cal-input' type='number' ref={calRef}></input>
-                    <button className='add-btn'>+</button>
-                </form>
+                ))}
+                {/* ======================================= Display Add New Food Section ======================================= */}
+                <tr>
+                    <td><input type='text' ref={foodRef}></input></td>
+                    <td><input type='number' ref={calRef}></input></td>
+                    <td></td>
+                    <td><button onClick={() => handleAddFood(foodRef.current.value, calRef.current.value)}>ADD</button></td>
+                </tr>
 
-            </div>
-
-            {/* ======================================= Display Total Calories ======================================= */}
-            {props.item.food.length === 0
-                ? <p>Total: 0</p>
-                : <p>Total: {props.item.food.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</p>
-            }
-
+                {/* ======================================= Display Total Calories ======================================= */}
+                <tr>
+                    {props.item.food.length === 0
+                        ? <td>Total: 0</td>
+                        : <td>Total: {props.item.food.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</td>
+                    }
+                </tr>
+            </table>
         </div>
     )
 }

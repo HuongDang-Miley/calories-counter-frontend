@@ -1,13 +1,13 @@
 import React from 'react'
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
+import Test2 from './Test2.js'
 
 
 
 export default function Meals(props) {
     return (
         <div>
-           
             <div className='selector' >
                 <select onChange={(event) => props.handleSelectMeal(event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
