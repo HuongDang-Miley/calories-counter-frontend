@@ -25,7 +25,8 @@ const App = (props) => {
           <div className='workout-wrapper'>
            <Workout deleteWorkout={props.deleteWorkout}
            toggleField={props.toggleField}
-           workouts= {props.workouts}/>
+           workouts= {props.workouts}
+           editWorkout={props.editWorkout}/>
          </div>
         </div>
       </div>
@@ -45,7 +46,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteWorkout: (id)=> dispatch({type:"DELETE_WORK",targetId:id}),
-    toggleField : ()=>dispatch({type:"TOGGLE_FIELD"})
+    toggleField : ()=>dispatch({type:"TOGGLE_FIELD"}),
+    editWorkout: (id) => dispatch({type:"EDIT_WORK", targetId: id})
+    
     
     
   }

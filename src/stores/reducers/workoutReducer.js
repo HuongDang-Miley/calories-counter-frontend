@@ -12,27 +12,54 @@ const initialState = {
 
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
-        
-        // case "TOGGLE_FIELD":
-        //     const text =(state.showAdd ?  "Show" : "Hide")
-        //     return{
-        //         ...state,
-        //         showAdd:!state.showAdd,
-        //         buttonText:text
+        case "ADD_WORK":
+            return{
 
-        //     }
+            }
+        
+        case "TOGGLE_FIELD":
+            const text =(state.showAdd ?  "Show" : "Hide")
+            return{
+                ...state,
+                showAdd:!state.showAdd,
+                buttonText:text
+
+            }
 
 
         case "DELETE_WORK":
-        const newArr = state.workoutArray.filter((currEl)=>{
+        const newArr = state.workouts.filter((currEl)=>{
             return currEl.id !== action.targetId;
 
-        });
+        }
+        
+        );
+        
         return {
             ...state,
             workouts : newArr
         }
         
+        case "EDIT_WORK":
+            console.log(action)
+            let updateArr = state.workouts.map((item)=>{
+                if(item.id === action.targetId){
+                    return {
+                        ...item,
+                        name :action.newName,
+                        cal : action.newCal
+                    }
+                    
+                }else{
+                    return item
+                }
+            })
+            return{
+                ...state,
+                workouts :updateArr
+
+            }
+
             
 
 

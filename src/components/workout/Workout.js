@@ -4,7 +4,7 @@ const Workout=(props) =>{
     
 
         <div className ='workout-header'> 
-        
+        <button className="add-workout"> ADD WORKOUT</button>
         <h3>WORKOUT</h3>
 
       
@@ -17,8 +17,9 @@ const Workout=(props) =>{
         
         {props.workouts.workouts.map((currWork)=>(
             <div>
-            <button className="delete-workout-button" onClick={()=>props.deleteWorkout(currWork.id)}>X</button>
-            {currWork.kcal}
+            <button className="delete-workout-button" onClick={()=>props.deleteWorkout(currWork.id)}>delete</button>
+            <button className="edit-workout-button" onClick={()=>props.editWorkout(currWork.id)}>edit</button>
+            {currWork.cal}
             <u>{currWork.name}</u>
             
           </div>
