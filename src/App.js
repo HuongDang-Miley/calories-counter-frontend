@@ -1,5 +1,5 @@
 import './App.css';
-import { useRef } from 'react'
+import React,{ useRef } from 'react'
 import { connect } from 'react-redux'
 import Meals from './components/meals/Meals'
 import Workout from './components/workout/Workout'
@@ -22,6 +22,16 @@ const App = (props) => {
           </div>
           <div className='workout-wrapper'>
             <Workout />
+            <button onClick ={props.toggleField }></button>
+            <h1>test "workout":</h1>
+            {props.workouts.map((currWork)=>(
+              <div>
+                <button onClick={()=>props.deleteWorkout(currWork.id)}>X</button>
+                <u>{currWork.name}</u>
+                {currWork.kcal}
+
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -32,13 +42,18 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-   state
+  workouts:state.workoutArray,
+  show:state.showAdd,
+  buttonText: state.buttonText
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    deleteWorkout: (id)=> dispatch({type:"DELETE_WORK",targetId:id}),
+    toggleField : ()=>dispatch({type:"TOGGLE_FIELD"})
+    
+    
   }
 }
 

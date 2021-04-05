@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   meals_Reducer: mealsReducer,
   login_Reducer: loginReducer,
   workout_Reducer: workoutReducer,
-  cal_couter_Reducer: calCounterReducer,
+  cal_counter_Reducer: calCounterReducer,
 })
 
 const rootStore = createStore(rootReducer)
