@@ -44,17 +44,15 @@
 
 .meals-wrapper {
   grid-area: meals; 
-  background-color: white;
+  /* background-color: white; */
   margin-right: 8px;
-  padding: 0px 0px 24px 32px; 
   overflow: scroll;
-  height: 85%;
+  height: 100%;
 }
 
 .workout-wrapper {
   grid-area: workout;
   background-color: white;
-  padding: 0px 32px 24px 32px; 
   overflow: scroll;
   margin-right: 40px;
 }

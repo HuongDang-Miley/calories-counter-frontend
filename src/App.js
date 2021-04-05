@@ -1,3 +1,4 @@
+import Meal from './Meal.svg'
 import './App.css';
 import { v4 as uuidv4 } from "uuid";
 import { connect } from 'react-redux'
@@ -25,19 +26,19 @@ const App = (props) => {
               deleteMeal={props.deleteMeal}
               editFood={props.editFood}
               editMeal={props.editMeal}
-              handleSelectMeal ={props.handleSelectMeal}
+              handleSelectMeal={props.handleSelectMeal}
             />
           </div>
           <div className='workout-wrapper'>
-          <Meals
+            {/* <Meals
               meals={props.meals}
               addFood={props.addFood}
               deleteFood={props.deleteFood}
               deleteMeal={props.deleteMeal}
               editFood={props.editFood}
               editMeal={props.editMeal}
-              handleSelectMeal ={props.handleSelectMeal}
-            />
+              handleSelectMeal={props.handleSelectMeal}
+            /> */}
             <Workout />
           </div>
         </div>
@@ -62,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteMeal: (targetMealId) => dispatch({ type: 'DELETE_MEAL', targetMealId: targetMealId }),
     editFood: (targetMealId, targetFoodId, name, cal) => dispatch({ type: 'EDIT_FOOD', targetMealId: targetMealId, targetFoodId: targetFoodId, name: name, cal: cal }),
     editMeal: (targetMealId, name) => dispatch({ type: 'EDIT_MEAL', targetMealId: targetMealId, name: name, }),
-    handleSelectMeal: (mealType) => (dispatch({type: 'ADD_MEAL', mealType: mealType}))
+    handleSelectMeal: (mealType) => (dispatch({ type: 'ADD_MEAL', mealType: mealType }))
   }
 }
 

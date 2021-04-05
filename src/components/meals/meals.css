@@ -1,16 +1,7 @@
-/* button {
-    padding: 10px;
-    width: 133px;
-    height: 36px;
-    color: white;
-    background: #29CC97;
-    border-radius: 5px;
-    border-color: 1px solid #29CC97;
-} */
 
-.selector {
+.selector-wrapper {
     position: sticky;
-    background-color: white;
+    background-color: #F3F4F5;
     width: 100%;
     padding-bottom: 8px;
     top: 0
@@ -18,33 +9,17 @@
 
 select {
     height: 36px;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     background-color: #29CC97;
     color: white;
-    border:
+    border: none;
 }
 
-.meal-card {
-    border: 1px solid black
-}
-
-
-
-/* table {
-    width: 100%;
-}
-
-table, tr, td {
+/* .meal-card {
     border: 1px solid black;
-    border-collapse: collapse;
-}
-
-tr, td {
-    padding: 5px;
-    text-align: left;    
-}
-
-.edit-btn .delete-button {
-    text-align: right;
+    padding: 80px;
+    border-radius: 40px;
 } */
+
+

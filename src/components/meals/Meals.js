@@ -8,14 +8,14 @@ import Test2 from './Test2.js'
 export default function Meals(props) {
     return (
         <div>
-            <div className='selector' >
+            <div className='selector-wrapper' >
                 <select onChange={(event) => props.handleSelectMeal(event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Brunch">Brunch</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Snack">Snack</option>
-                    <option value="Dinner">Dinner</option>
+                    <option value="BREAKFAST">Breakfast</option>
+                    <option value="BRUNCH">Brunch</option>
+                    <option value="LUNCH">Lunch</option>
+                    <option value="SNACK">Snack</option>
+                    <option value="DINNER">Dinner</option>
                 </select>
             </div>
 
