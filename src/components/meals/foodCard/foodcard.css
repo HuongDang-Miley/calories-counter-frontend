@@ -1,0 +1,68 @@
+.foodcard-wrapper {
+    background-color: grey;
+    /* width: 100%; */
+    height: 36px;
+    /* display: inline-block; */
+}
+
+button {
+    background-color: #29CC97;
+    color: white;
+    width: 36px;
+}
+
+.disable-savebtn {
+    background-color: red;
+    color: white;
+    cursor: none;
+    display: inline;
+}
+
+.delete-btn {
+ display: inline;
+ grid-area: delBtn ;
+}
+
+button:disabled{
+background-color: chartreuse;
+}
+
+div form {
+    display: inline;
+}
+
+.foodcard-wrapper {
+    display: grid;
+    grid-template-areas: 'food delBtn';
+}
+
+.food-row {
+    display: grid;
+    grid-template-areas: 'name cal btn';
+    grid-area: food ;
+    background-color: chocolate;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.food-cell {
+    width: 200px;
+    background-color: blue;
+    grid-area: name;
+    padding: 10px;
+    text-align: start;
+}
+
+.cal-cell {
+    width: 50px;
+    background-color: gold ;
+    grid-area: cal;
+    text-align: right;
+    padding: 10px;
+    text-align: right;
+}
+
+.btn {
+    grid-area: btn;
+}
+
