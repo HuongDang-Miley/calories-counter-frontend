@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-import FoodCard from './foodCard/FoodCard.js'
-
+import FoodCard from '../foodCard/FoodCard.js'
+import './mealcard.css'
 export default function MealCard(props) {
     const [showEdit, setShowEdit] = useState(false)
     const [food, setFood] = useState('')
@@ -26,6 +26,20 @@ export default function MealCard(props) {
 
     return (
         <div className='meal-card'>
+            <table>
+                <tr>
+                    <th>Food</th>
+                    <th>Cal</th>
+                    <th>Edit</th>
+                    <th>Del</th>
+                </tr>
+                <tr>
+                    <td>Chicken</td>
+                    <td>20</td>
+                    <td>Edit</td>
+                    <td>Del</td>
+                </tr>
+            </table>
             {/* ======================================= Display Meal Type ======================================= */}
             <div>
                 {showEdit
@@ -35,7 +49,7 @@ export default function MealCard(props) {
                         <button onClick={() => {
                             props.editMeal(props.item.id, foodRef.current.value)
                             setShowEdit(!showEdit)
-                        }}>Save</button>
+                        }}>√</button>
                     </span>
                     : <span>
                         <span>{props.item.type}</span>
@@ -59,14 +73,17 @@ export default function MealCard(props) {
                 // </div>
             ))}
             {/* ======================================= Display Add New Food Section ======================================= */}
-            <form
-                onChange={() => handleInputChange(foodRef.current.value, calRef.current.value)}
-                onSubmit={handleSubmitFood}
-            >
-                <input type='text' ref={foodRef}></input>
-                <input type='number' ref={calRef}></input>
-                <button>Add Food</button>
-            </form>
+            <div className='addfood-wrapper'>
+                <form className='add-food'
+                    onChange={() => handleInputChange(foodRef.current.value, calRef.current.value)}
+                    onSubmit={handleSubmitFood}
+                >
+                    <input className='food-input' type='text' ref={foodRef}></input>
+                    <input className='cal-input' type='number' ref={calRef}></input>
+                    <button className='add-btn'>+</button>
+                </form>
+
+            </div>
 
             {/* ======================================= Display Total Calories ======================================= */}
             {props.item.food.length === 0

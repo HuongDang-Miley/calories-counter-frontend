@@ -33,36 +33,51 @@ div form {
 
 .foodcard-wrapper {
     display: grid;
-    grid-template-areas: 'food delBtn';
+    grid-template-areas: 'name cal editBtn delBtn';
 }
 
 .food-row {
-    display: grid;
+    /* display: grid;
     grid-template-areas: 'name cal btn';
-    grid-area: food ;
+    grid-area: food ; */
     background-color: chocolate;
     font-size: 14px;
     line-height: 16px;
 }
 
 .food-cell {
-    width: 200px;
-    background-color: blue;
-    grid-area: name;
+    /* width: 200px; */
+    min-width: 200px;
+    background-color: cyan;
     padding: 10px;
-    text-align: start;
+    grid-area: name;
 }
 
 .cal-cell {
-    width: 50px;
+    /* width: 100px; */
+    min-width: 100px;
     background-color: gold ;
-    grid-area: cal;
-    text-align: right;
     padding: 10px;
+    grid-area: cal;
     text-align: right;
 }
 
-.btn {
-    grid-area: btn;
+.save-btn {
+    grid-area: editBtn;
+    width: 36px;
+    height: 36px;
+}
+
+.food-span {
+    width: 200px;
+    background-color: blue;
+    grid-area: name;
+}
+
+.cal-span {
+    width: 100px;
+    background-color: gold ;
+    grid-area: cal;
+    text-align: right;
 }
 

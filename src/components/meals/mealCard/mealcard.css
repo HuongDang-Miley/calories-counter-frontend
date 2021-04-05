@@ -1,0 +1,44 @@
+/* .addfood-wrapper {
+    width: 100%;
+    background-color: darkkhaki;
+    display: grid;
+    grid-template-areas: 'food food cal2 . btn2';
+}
+
+
+.food-input{
+    width: 40%;
+    background-color: cyan;
+    grid-area: food;
+    padding: 10px;
+    text-align: start;
+}
+
+.cal-input{
+    width: 40%;
+    background-color: gold ;
+    padding: 10px;
+    grid-area: cal2;
+    text-align: right;
+}
+
+.add-btn {
+    height: 36px;
+    width: 36px;
+    grid-area: btn2;
+    margin: 0
+} */
+
+tr {
+    border: 1px solid black;
+}
+
+th {
+    text-align: left;
+}
+
+table {
+    border: 1px solid black;
+    width: 100%;
+}
+

@@ -1,12 +1,10 @@
 import React from 'react'
 import './meals.css'
-import MealCard from './MealCard.js'
+import MealCard from './mealCard/MealCard.js'
 
 
 
 export default function Meals(props) {
-
-
     return (
         <div>
            
@@ -20,8 +18,6 @@ export default function Meals(props) {
                     <option value="Dinner">Dinner</option>
                 </select>
             </div>
-
-
 
             {props.meals.meals.map(item => (
                 <MealCard

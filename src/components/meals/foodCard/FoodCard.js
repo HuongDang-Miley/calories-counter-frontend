@@ -33,12 +33,12 @@ export default function FoodCard(props) {
                     <input className='cal-cell' defaultValue={props.item.cal} type='number' ref={calRef}></input>
                     <button
                         disabled={disableSaveButton}
-                        className={disableSaveButton ? 'disable btn' : 'enable btn'}
-                    >Save</button>
+                        className={disableSaveButton ? 'disable save-btn' : 'enable save-btn'}
+                    >√</button>
                 </form>
                 : <div className='food-row'>
-                    <span className='food-cell'>{props.item.name}</span>
-                    <span className='cal-cell'>{props.item.cal}</span>
+                    <span className='food-span'>{props.item.name}</span>
+                    <span className='cal-span'>{props.item.cal}</span>
                     <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
                 </div>
             }
