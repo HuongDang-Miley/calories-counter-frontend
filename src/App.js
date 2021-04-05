@@ -7,6 +7,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import CaloriesCounter from './components/caloriesCounter/CaloriesCounter'
 
 const App = (props) => {
+  console.log(props)
   return (
     <div className="App">
       <div className='sidebar-wrapper' >
@@ -21,12 +22,20 @@ const App = (props) => {
             <Meals />
           </div>
           <div className='workout-wrapper'>
-            <Workout />
-            <button onClick ={props.toggleField }></button>
-            <h1>test "workout":</h1>
-            {props.workouts.map((currWork)=>(
+          <div className ='workout-header'>
+            <h3>WORKOUT</h3>
+
+          </div>
+          <div className = 'calories-header'>
+            <h4>CALORIES BURNT</h4>
+          </div>
+            {/* <button onClick ={props.toggleField }></button> */}
+            
+            <input className="add-workout" placeholder="type workout"></input><input></input>
+            
+            {props.workouts.workoutArray.map((currWork)=>(
               <div>
-                <button onClick={()=>props.deleteWorkout(currWork.id)}>X</button>
+                <button className="delete-workout-button" onClick={()=>props.deleteWorkout(currWork.id)}>X</button>
                 <u>{currWork.name}</u>
                 {currWork.kcal}
 
@@ -42,7 +51,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-  workouts:state.workoutArray,
+  workouts:state.workout_Reducer,
   show:state.showAdd,
   buttonText: state.buttonText
   }
