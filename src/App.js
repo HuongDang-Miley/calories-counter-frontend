@@ -26,7 +26,8 @@ const App = (props) => {
            <Workout deleteWorkout={props.deleteWorkout}
            toggleField={props.toggleField}
            workouts= {props.workouts}
-           editWorkout={props.editWorkout}/>
+           editWorkout={props.editWorkout}
+           addWorkout ={props.addWorkout}/>
          </div>
         </div>
       </div>

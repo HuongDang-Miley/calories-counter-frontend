@@ -13,6 +13,7 @@ const initialState = {
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
         case "TOGGLE_FIELD":
+            //i want this to toggle the add workout to add a new input field
             const text =(state.showAdd ?  "Show" : "Hide")
             return{
                 ...state,
@@ -54,7 +55,7 @@ const workoutReducer = (state = initialState, action) => {
             let updateArr = state.workouts.map((item)=>{
                 if(item.id === action.targetId){
                     return {
-                        ...item,
+                        ...item,   
                         name :action.newName,
                         cal : action.newCal
                     }
