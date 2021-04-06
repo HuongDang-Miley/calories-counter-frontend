@@ -1,4 +1,3 @@
-import Meal from './Meal.svg'
 import './App.css';
 import { v4 as uuidv4 } from "uuid";
 import { connect } from 'react-redux'
@@ -11,7 +10,12 @@ const App = (props) => {
   return (
     <div className="App">
       <div className='sidebar-wrapper' >
-        <Sidebar />
+        <Sidebar
+          workouts={props.workouts}
+          meals={props.meals}
+          deleteAllMeals={props.deleteAllMeals}
+          deleteAllWorkouts={props.deleteAllWorkouts}
+        />
       </div>
       <div className='main-wrapper'>
         <div className='TopNav-wrapper' >
@@ -47,12 +51,11 @@ const App = (props) => {
   );
 }
 
-
 const mapStateToProps = (state) => {
   return {
     state: state,
-    meals: state.meals_Reducer
-
+    meals: state.meals_Reducer,
+    workouts: state.workout_Reducer,
   }
 }
 
@@ -63,8 +66,10 @@ const mapDispatchToProps = (dispatch) => {
     deleteMeal: (targetMealId) => dispatch({ type: 'DELETE_MEAL', targetMealId: targetMealId }),
     editFood: (targetMealId, targetFoodId, name, cal) => dispatch({ type: 'EDIT_FOOD', targetMealId: targetMealId, targetFoodId: targetFoodId, name: name, cal: cal }),
     editMeal: (targetMealId, name) => dispatch({ type: 'EDIT_MEAL', targetMealId: targetMealId, name: name, }),
-    handleSelectMeal: (mealType) => (dispatch({ type: 'ADD_MEAL', mealType: mealType }))
-  }
+    handleSelectMeal: (mealType) => (dispatch({ type: 'ADD_MEAL', mealType: mealType })),
+    deleteAllMeals: () => (dispatch({ type: 'DELETE_ALL_MEALS' })),
+    deleteAllWorkouts: () => (dispatch({ type: 'DELETE_ALL_WORKOUTS' }))
+}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

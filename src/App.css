@@ -13,8 +13,8 @@
 
 .sidebar-wrapper {
   background-color: #363740;
-  color: white;
-  padding: 24px 32px 24px 32px; 
+  color: red;
+  padding: 20px;
   width: 255px;
   height: 100%;
 }

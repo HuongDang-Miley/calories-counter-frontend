@@ -6,6 +6,7 @@ button {
     border-radius: 2px;
     border: none
 }
+
 button:hover {
     width: 36px;
     height: 36px;
@@ -16,13 +17,14 @@ button:hover {
 }
 
 
-table {
+table.meal-table {
     min-width: 370px;
     max-width: 568px;
     width: 100%;    
     margin-bottom: 6px;
   border-collapse: collapse;
   background-color: white;
+  border: 1px solid #DFE0EB;
 }
 
 img {
@@ -48,7 +50,7 @@ input, input.cal-cell {
 .cal-input {
     /* width: 110px; */
     width: 100%;
-    margin-left: 4px;
+    margin-left: 
 }
 
   input:focus {
@@ -128,6 +130,10 @@ background-color: #E2E2E3;
 .del-btn-focus:hover {
     color: #D64A4B;
     background-color: #E2E2E3;
+}
+
+tfoot {
+    border-bottom: 1px solid #F3F3F3;
 }
 
 
