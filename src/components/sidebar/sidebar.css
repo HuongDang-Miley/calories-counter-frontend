@@ -1,4 +1,57 @@
-.sidebar-button{
-    height: 25px;
-    /* text-align: center; */
+.sidebar-table {
+    color: #86868C;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
+
+.sidebar-img-cell {
+    max-width: 25px;
+    text-align: right;
+    border: none;
+}
+.sidebar-title-cell{
+    border: none;
+    font-weight: 500;
+    max-width: 90px;
+    padding-left: 8px;
+}
+
+th.sidebar-cal-cell {
+    font-weight: 800;
+}
+
+.sidebar-cal-cell{
+    border: none;
+    min-width: 60px;
+    color: white;
+    font-size: 18px;
+    text-align: right;
+}
+
+.logo {
+    height: 32px;
+}
+
+.sidebar-btn {
+    width: 200px;
+    border: 1px solid #FF5A5B;
+    border-radius: 4px;
+    background-color: #363740;
+    color: #FF5A5B;
+    line-height: 24px;
+}
+
+.sidebar-btn:hover{
+background-color: #FF5A5B;
+color: white;
+width: 200px;
+line-height: 24px;
+}
+
+.trash-icon{
+    padding: 3px;
+}
+
+   

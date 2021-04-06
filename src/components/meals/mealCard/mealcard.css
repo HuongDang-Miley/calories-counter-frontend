@@ -1,0 +1,133 @@
+button {
+    width: 36px;
+    height: 36px;
+    color: #E2E2E3;
+    background-color: white;
+    border-radius: 2px;
+    border: none
+}
+button:hover {
+    width: 36px;
+    height: 36px;
+    color: black;
+    background-color: #E2E2E3;
+    border-radius: 2px;
+    border: none
+}
+
+
+table {
+    min-width: 370px;
+    max-width: 568px;
+    width: 100%;    
+    margin-bottom: 6px;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+img {
+    margin-right: 8px;
+    height: 24px;
+}
+input, input.cal-cell {
+    font-size: 1em;
+    height: 40px;
+    border: 1px solid #29CC97;
+    padding-left: 8px;
+    border-radius: 4px;
+    /* outline: 1; */
+    /* border-width: 0 0 2px; */
+    /* border-color: #29CC97; */
+    text-align: left;
+}
+
+.food-input {
+    max-width: 200px;
+}
+
+.cal-input {
+    /* width: 110px; */
+    width: 100%;
+    margin-left: 4px;
+}
+
+  input:focus {
+    border-color: red;
+  }
+
+::placeholder { 
+    color: black;
+    opacity: 25%;
+  }
+
+th {
+    /* border: 1px solid blue; */
+   padding-top: 16px;
+   border-bottom: 2px solid #F3F3F3;
+   text-align: left;
+   line-height: 24px;
+   vertical-align: middle;
+}
+
+th.meal-types {
+    padding-left: 16px;
+}
+
+
+td {
+    /* border: 1px solid red; */
+    height: 36px;
+    border-bottom: 1px solid #F3F3F3;
+}
+
+.cal-cell {
+    width: 30%;
+    text-align: right;
+  
+}
+
+.food-cell {
+    width: 30%;
+    /* width: 30px; */
+    padding-left: 48px; 
+    padding-right: 0px;
+    text-align: left;
+}
+
+.last-cell {
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 16px;
+    font-weight: bold;
+}
+
+.edit-btn {
+    width: 20%;
+    padding-right: 8%;
+    padding-left: 8%;
+}
+    
+.del-btn {
+    width: 10%;
+    padding-right: 24px;
+}
+
+.add-n-save-btn {
+color: #29CC97;
+}
+
+.add-n-save-btn:hover {
+color: #48BC97;
+background-color: #E2E2E3;
+}
+
+.del-btn-focus{
+    color: #F15354
+}
+
+.del-btn-focus:hover {
+    color: #D64A4B;
+    background-color: #E2E2E3;
+}
+
+

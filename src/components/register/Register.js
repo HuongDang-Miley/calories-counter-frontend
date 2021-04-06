@@ -77,7 +77,7 @@ export const Register = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    newState: state.login_Reducer,
+    newState: state.login_Reducer.isAuth,
   };
 };
 

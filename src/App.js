@@ -9,97 +9,133 @@ import {
 
 import { useEffect } from "react";
 import { connect, Provider } from "react-redux";
-import Meals from "./components/meals/Meals";
+import {Meals} from "./components/meals/Meals";
 import { Workout } from "./components/workout/Workout";
-import { Sidebar } from "./components/sidebar/Sidebar";
+import  Sidebar  from "./components/sidebar/Sidebar";
 // import CaloriesCounter from "./components/caloriesCounter/CaloriesCounter";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Home from "./components/home/Home";
 import { PrivateRoute } from "./components/privateRoute/PrivateRoute";
-import {TopNav} from "./components/topNav/TopNav";
+import  TopNav  from "./components/topNav/TopNav";
 import { NotFound } from "./components/notFound/NotFound";
 import { stayUp } from "./stores/actions/authActionCreator";
+import axios from "axios";
+import Meal from "./Meal.svg";
+
+import { v4 as uuidv4 } from "uuid";
 
 const App = (props) => {
-  console.log(props.state);
+  console.log(props);
 
-  useEffect(() => {
-    let getToken = localStorage.getItem("jwtToken");
-    props.stayUp(getToken);
-
-    // console.log(getToken)
-  }, []);
+  
 
   return (
     <div>
-      {/* <Provider store={store}> */}
-
+      
       <Router>
-        {/* <Link to="/register">Register here</Link>
-        <br></br>
-      <Link to="/login">login</Link> */}
-
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           {/* why different color in components below */}
-          
+
           {/* <PrivateRoute exact path="/nav" component={TopNav} /> */}
-          <Route exact path="/nav" component={TopNav} />
+          {/* <Route exact path="/nav" component={TopNav} />
           <Route exact path="/sidebar" component={Sidebar} />
-          <Route exact path="/meals" component={Meals} />
+          <Route exact path="/meals"   component={Meals}/> */}
+            {/* <Meals
+              meals={props.meals}
+              addFood={props.addFood}
+              deleteFood={props.deleteFood}
+              deleteMeal={props.deleteMeal}
+              editFood={props.editFood}
+              editMeal={props.editMeal}
+              handleSelectMeal={props.handleSelectMeal}
+            />
+          </Route> */}
 
           <Route path="" component={NotFound} />
-          {/* <PrivateRoute exact path="/main"  component={Workout}/>  */}
-          {/* <TopNav/>
-          <Sidebar/>
-          <Meals/>
-          <Workout/>
-          </PrivateRoute > */}
-
-          {/* <PrivateRoute /> */}
         </Switch>
       </Router>
-      {/* </Provider> */}
+      {/* ------------- ----------------------------*/}
+      {/* <div className="App"> */}
+      {/* <div className='sidebar-wrapper' >
+        <Sidebar />
+      </div> */}
+      {/* <div className='main-wrapper'> */}
+      {/* <div className='TopNav-wrapper' >
+          <TopNav />
+        </div> */}
+      {/* <div className='cards-wrapper'> */}
+      {/* <div className='meals-wrapper'>
+            <Meals
+              meals={props.meals}
+              addFood={props.addFood}
+              deleteFood={props.deleteFood}
+              deleteMeal={props.deleteMeal}
+              editFood={props.editFood}
+              editMeal={props.editMeal}
+              handleSelectMeal={props.handleSelectMeal}
+            />
+          </div> */}
+      {/* <div className='workout-wrapper'>
+            {/* <Meals
+              meals={props.meals}
+              addFood={props.addFood}
+              deleteFood={props.deleteFood}
+              deleteMeal={props.deleteMeal}
+              editFood={props.editFood}
+              editMeal={props.editMeal}
+              handleSelectMeal={props.handleSelectMeal}
+            /> */}
+      {/* <Workout /> */}
+      {/* </div>  */}
 
-      {/* {props.state.login_Reducer.loggedIn ? (
-        <div className="App">
-          <div className="sidebar-wrapper">
-            <Sidebar />
-          </div>
-          <div className="main-wrapper">
-            <div className="CaloriesCounter-wrapper">
-              <CaloriesCounter />
-            </div>
-            <div className="cards-wrapper">
-              <div className="meals-wrapper">
-                <Meals />
-              </div>
-              <div className="workout-wrapper">
-                <Workout />
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : ( */}
-      {/* // <div>
-        //to pass the 'register'  from below, add props 'prefix'
-        //register is the dispatch sending info to the reducers , 
-        //the info is gathered from component login 'using input refs'
-        //passing the register to 'component login' which will send us the username,email n password back
-      //     <Register login_Reducer={login_Reducer} register={props.register}/>
-      
-      // )} */}
+      {/* </div> */}
+      {/* -------------------------------------------- */}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    state,
+    // state: state,
+    isAuth: state.login_Reducer.isAuth,
+    meals: state.meals_Reducer,
   };
 };
 
-export default connect(mapStateToProps, { stayUp })(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addFood: (targetId, food, cal) =>
+      dispatch({
+        type: "ADD_FOOD",
+        targetId: targetId,
+        newFood: { id: uuidv4(), name: food, cal: cal },
+      }),
+    deleteFood: (targetMealId, targetFoodId) =>
+      dispatch({
+        type: "DELETE_FOOD",
+        targetMealId: targetMealId,
+        targetFoodId: targetFoodId,
+      }),
+    deleteMeal: (targetMealId) =>
+      dispatch({ type: "DELETE_MEAL", targetMealId: targetMealId }),
+    editFood: (targetMealId, targetFoodId, name, cal) =>
+      dispatch({
+        type: "EDIT_FOOD",
+        targetMealId: targetMealId,
+        targetFoodId: targetFoodId,
+        name: name,
+        cal: cal,
+      }),
+    editMeal: (targetMealId, name) =>
+      dispatch({ type: "EDIT_MEAL", targetMealId: targetMealId, name: name }),
+    handleSelectMeal: async (mealType) => {
+      dispatch({ type: "ADD_MEAL", mealType: mealType });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

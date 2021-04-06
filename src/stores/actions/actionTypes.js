@@ -11,4 +11,6 @@ export const AUTH_USER_SIGN_IN_FAILURE = 'AUTH_USER_SIGN_IN_FAILURE';
 
 export const AUTH_USER_STAY_UP = 'AUTH_USER_STAY_UP';
 
+export const ADD_MEAL = "ADD_MEAL"
+
 

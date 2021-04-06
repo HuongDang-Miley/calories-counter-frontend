@@ -1,0 +1,25 @@
+
+.selector-wrapper {
+    position: sticky;
+    background-color: #F3F4F5;
+    width: 100%;
+    padding-bottom: 8px;
+    top: 0
+}
+
+select {
+    height: 36px;
+    border-radius: 2px;
+    padding: 10px;
+    background-color: #29CC97;
+    color: white;
+    border: none;
+}
+
+/* .meal-card {
+    border: 1px solid black;
+    padding: 80px;
+    border-radius: 40px;
+} */
+
+
