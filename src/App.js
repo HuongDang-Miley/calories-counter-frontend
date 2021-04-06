@@ -34,7 +34,7 @@ const App = (props) => {
             />
           </div>
           <div className='workout-wrapper'>
-            <Meals
+            {/* <Meals
               meals={props.meals}
               addFood={props.addFood}
               deleteFood={props.deleteFood}
@@ -42,8 +42,10 @@ const App = (props) => {
               editFood={props.editFood}
               editMeal={props.editMeal}
               handleSelectMeal={props.handleSelectMeal}
+            /> */}
+            <Workout
+              workouts={props.workouts}
             />
-            <Workout />
           </div>
         </div>
       </div>
@@ -69,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
     handleSelectMeal: (mealType) => (dispatch({ type: 'ADD_MEAL', mealType: mealType })),
     deleteAllMeals: () => (dispatch({ type: 'DELETE_ALL_MEALS' })),
     deleteAllWorkouts: () => (dispatch({ type: 'DELETE_ALL_WORKOUTS' }))
-}
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

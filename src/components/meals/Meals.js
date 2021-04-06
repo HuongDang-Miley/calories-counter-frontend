@@ -1,7 +1,6 @@
 import React from 'react'
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
-import Test2 from './Test2.js'
 
 
 

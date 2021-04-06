@@ -39,7 +39,7 @@ export default function MealCard(props) {
                 <thead>
                     <tr>
                         <th className='meal-types'>{showEdit //=> show selector when hit edit button
-                            ? <select onChange={(event) => setSelectMeal(event.target.value)}>
+                            ? <select className='select-button' onChange={(event) => setSelectMeal(event.target.value)}>
                                 <option value='none' defaultValue hidden>SELECT MEAL TYPE</option>
                                 <option value="BREAKFAST">BREAKFAST</option>
                                 <option value="BRUNCH">BRUNCH</option>

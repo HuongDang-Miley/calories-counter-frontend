@@ -22,7 +22,7 @@ table.meal-table {
     max-width: 568px;
     width: 100%;    
     margin-bottom: 6px;
-  border-collapse: collapse;
+  border-collapm: collapse;
   background-color: white;
   border: 1px solid #DFE0EB;
 }
