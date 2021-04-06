@@ -47,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteWorkout: (id)=> dispatch({type:"DELETE_WORK",targetId:id}),
     toggleField : ()=>dispatch({type:"TOGGLE_FIELD"}),
-    editWorkout: (id) => dispatch({type:"EDIT_WORK", targetId: id})
+    editWorkout: (targetId, name) => dispatch({type:"EDIT_WORK", targetId:targetId, newName:name}),
+    addWorkout:(name, cal)=>dispatch({type:"ADD_WORK", newName:name, newCal:cal})
     
     
     
