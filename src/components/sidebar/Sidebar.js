@@ -4,8 +4,6 @@ import Button from '@material-ui/core/Button';
 import './sidebar.css'
 
 export default function Sidebar(props) {
-    console.log(props)
-
     let totalCalIntake = props.meals.meals
         // map through meals array return an array that has child arrays of calories only
         .map(meal => meal.food.map(food => food.cal)
@@ -20,7 +18,7 @@ export default function Sidebar(props) {
         // return total calories of the array
         .reduce((total, workoutCal) => { return total += Number(workoutCal) }, 0)
 
-    const [totalCal, setTotalCal] = useState(Number(totalCalIntake) - Number(totalCalBurned))
+    // const [totalCal, setTotalCal] = useState(Number(totalCalIntake) - Number(totalCalBurned))
 
     const deleteAllData = () => {
         console.log('click')
@@ -28,8 +26,6 @@ export default function Sidebar(props) {
         props.deleteAllWorkouts()
     }
 
-    console.log(totalCalIntake)
-    // console.log(totalCalIntake)
     return (
         <div>
             <img className='logo' src='/logo.svg'></img>
@@ -57,10 +53,6 @@ export default function Sidebar(props) {
                     </tr>
                 </tbody>
             </table>
-            {/* <button className='sidebar-btn' onClick={() => deleteAllData()}>RESET DATA
-            <img className='trash-icon' src='/trash-can.svg'/>
-            <DeleteIcon className='trash-icon'></DeleteIcon>
-            </button> */}
             <Button
                 className='sidebar-btn'
                 onClick={() => deleteAllData()}

@@ -92,9 +92,10 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case "EDIT_MEAL":
+            console.log(action)
             let updateMeal = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
-                    return { ...meal, type: action.name }
+                    return { ...meal, mealType: action.name }
                 } else { return meal }
             })
             return {
@@ -116,13 +117,12 @@ const mealsReducer = (state = initialState, action) => {
                 meals: [
                     {
                         id: uuidv4(),
-                        type: action.mealType,
+                        mealType: action.mealType,
                         food: []
                     },
                     ...state.meals
                 ]
             }
-
 
         default:
             return state

@@ -34,7 +34,7 @@ const App = (props) => {
             />
           </div>
           <div className='workout-wrapper'>
-            {/* <Meals
+            <Meals
               meals={props.meals}
               addFood={props.addFood}
               deleteFood={props.deleteFood}
@@ -42,7 +42,7 @@ const App = (props) => {
               editFood={props.editFood}
               editMeal={props.editMeal}
               handleSelectMeal={props.handleSelectMeal}
-            /> */}
+            />
             <Workout />
           </div>
         </div>
