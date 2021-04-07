@@ -19,7 +19,7 @@ import '../sidebar/sidebar.css'
 const Home = (props) => {
   let [userId, setUserId] = useState('')
   let [isAuth, setIsAuth] = useState(false)
-  // let [allMeals, setAllMeals] = useState([])
+  let [allMeals, setAllMeals] = useState([])
 
   useEffect(() => {
     let getToken = localStorage.getItem("jwtToken");
@@ -28,13 +28,14 @@ const Home = (props) => {
     setIsAuth(true)
 
     // Fetch Meals in Backend
-    // axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
-    //   .then(result => {
-    //     props.showAllMeals(result.data)
-    //     // return setMeals(result.data)
-    //   })
+    axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
+      // .then(result => {return setAllMeals(result.data)})
+      .then(result => localStorage.setItem('allMeal', result.data))
+
   }, []);
 
+  // console.log(data)
+  // console.log(allMeals)
 
 
   return (

@@ -6,8 +6,7 @@ import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 export default function Workout(props) {
     let nameRef = useRef()
     let calRef = useRef()
-    console.log(props.workouts.workouts)
-
+    
     return (
         <div>
             <table className='workout-table'>

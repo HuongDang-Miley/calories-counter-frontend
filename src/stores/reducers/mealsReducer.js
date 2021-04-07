@@ -1,6 +1,11 @@
 
+
+
 import { v4 as uuidv4 } from "uuid";
 import * as actionTypes from '../../stores/actions/actionTypes';
+import axios from 'axios'
+import fetch from 'fetch'
+
 
 const initialState = {
     meals: [
@@ -136,6 +141,10 @@ const mealsReducer = (state = initialState, action) => {
 
         default:
             return state
+        // {
+        //     ...state,
+        //     meals: axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7').then(result => state.meals = result.data)
+        // }
     }
 }
 

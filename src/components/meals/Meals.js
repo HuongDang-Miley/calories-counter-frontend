@@ -9,6 +9,7 @@ export default function Meals(props) {
     
     return (
         <div>
+            <button onClick={()=> console.log('click')}>Load Data</button>
             <div className='selector-wrapper' >
                 <select onChange={(event) => props.handleSelectMeal(event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
