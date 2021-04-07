@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{connect} from 'react'
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
 
 
 
-export default function Meals(props) {
+ export  default function Meals(props) {
+     console.log(props)
     return (
         <div>
             <div className='selector-wrapper' >
@@ -32,3 +33,15 @@ export default function Meals(props) {
         </div>
     )
 }
+
+// const mapStateToProps = (state) => {
+//     return {
+//       state: state,
+//       meals: state.meals_Reducer
+  
+//     }
+//   }
+  
+  
+//   export default connect(mapStateToProps )(Meals);
+  

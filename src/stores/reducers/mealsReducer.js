@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
+import * as actionTypes from '../../stores/actions/actionTypes';
+
 const initialState = {
     meals: [
         {
             id: uuidv4(),
-            mealType: 'Breakfast',
+            type: 'Breakfast',
             food: [
                 { id: uuidv4(), name: 'Egg', cal: 70 },
                 { id: uuidv4(), name: 'Latte', cal: 50 },
@@ -12,7 +14,7 @@ const initialState = {
         },
         {
             id: uuidv4(),
-            mealType: 'Snack',
+            type: 'Snack',
             food: [
                 { id: uuidv4(), name: 'Protein Bar', cal: 100 },
                 { id: uuidv4(), name: 'Diet Coke', cal: 10 },
