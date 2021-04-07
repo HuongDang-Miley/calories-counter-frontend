@@ -8,3 +8,9 @@
         width: 109px;
 
 }
+
+.workout-table {
+    margin-top: 45px;
+    background-color: white;
+    border: 1px solid #DFE0EB;
+}

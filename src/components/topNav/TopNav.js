@@ -3,29 +3,37 @@ import { connect } from "react-redux";
 import { logout } from "../../stores/actions/authActionCreator";
 import { stayUp } from "../../stores/actions/authActionCreator";
 import { Redirect } from "react-router";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Button from "@material-ui/core/Button";
+
 
 export const TopNav = (props) => {
 
-  console.log('TopNav props', props)
   const logOut = () => {
     localStorage.removeItem("jwtToken");
     props.setIsAuth(false)
   }
-  
+
   return (
     <div>
       {/* {props.newState.isAuth ? */}
       {props.isAuth ?
-        <div>TopNav</div>
+        <Button
+          className="logout-btn"
+          onClick={() => logOut()}
+          variant="filled"
+          color="primary"
+          endIcon={<ExitToAppIcon />}
+        >LOGOUT
+</Button>
         : <Redirect to="/register" />}
-      <button onClick={() => logOut()}>LOG OUT</button>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    newState: state.login_Reducer,
+    // newState: state.login_Reducer,
   };
 };
 

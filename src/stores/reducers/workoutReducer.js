@@ -22,68 +22,67 @@ const workoutReducer = (state = initialState, action) => {
 
         case "TOGGLE_FIELD":
             //i want this to toggle the add workout to add a new input field
-            const text =(state.showAdd ?  "Show" : "Hide")
-            return{
+            const text = (state.showAdd ? "Show" : "Hide")
+            return {
                 ...state,
-                showAdd:!state.showAdd,
-                buttonText:text
-                
+                showAdd: !state.showAdd,
+                buttonText: text
+
             }
-            // adding new workout
-            case "ADD_WORK":
-                const newWorkout = {
-                    name:action.newNAme,
-                    cal:action.newCal,
-                    id:uuidv4()
-                }
-                console.log(newWorkout);
-    
-                return{
-                    ...state,
-                    workouts:[...state.workouts, newWorkout]
-    
-                }
-            
+        // adding new workout
+        case "ADD_WORKOUT":
+            const newWorkout = {
+                name: action.newName,
+                cal: action.newCal,
+                id: uuidv4()
+            }
+            console.log(newWorkout);
 
-        case "DELETE_WORK":
-        const newArr = state.workouts.filter((currEl)=>{
-            return currEl.id !== action.targetId;
+            return {
+                ...state,
+                workouts: [...state.workouts, newWorkout]
 
-        }
-        
-        );
-        
-        return {
-            ...state,
-            workouts : newArr
-        }
-        
-        case "EDIT_WORK":
+            }
+
+
+        case "DELETE_WORKOUT":
+            const newArr = state.workouts.filter((currEl) => {
+                return currEl.id !== action.targetId;
+
+            }
+
+            );
+
+            return {
+                ...state,
+                workouts: newArr
+            }
+
+        case "EDIT_WORKOUT":
             console.log(action)
-            let updateArr = state.workouts.map((item)=>{
-                if(item.id === action.targetId){
+            let updateArr = state.workouts.map((item) => {
+                if (item.id === action.targetId) {
                     return {
-                        ...item,   
-                        name :action.newName,
-                        cal : action.newCal
+                        ...item,
+                        name: action.newName,
+                        cal: action.newCal
                     }
-                    
-                }else{
+                } else {
                     return item
                 }
             })
-            return{
+            return {
                 ...state,
-                workouts :updateArr
+                workouts: updateArr
 
             }
 
-            
 
 
-        default: 
-        
-        return state
+
+        default:
+
+            return state
     }
 }
 

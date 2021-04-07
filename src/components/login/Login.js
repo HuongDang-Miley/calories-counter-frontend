@@ -2,7 +2,8 @@ import React, { createRef, useRef, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 // import * as actionTypes from "../actions/actionTypes";
 
@@ -13,6 +14,7 @@ import { login, stayUp } from "../../stores/actions/authActionCreator";
 import Meals from "../meals/Meals";
 import { Workout } from "../workout/Workout";
 import { Sidebar } from "../sidebar/Sidebar";
+
 
 
 //props from app.js
@@ -39,13 +41,8 @@ const Login = (props) => {
   return (
     <>
       {props.newState.isAuth ? (
-        // <div>
-        //   <Sidebar />
-        //   <Meals />
-        //   <Workout />
-        // </div>
         <Route>
-          <Redirect  to="/" />
+          <Redirect to="/" />
         </Route>
       ) : (
         <div>
@@ -65,14 +62,14 @@ const Login = (props) => {
               inputRef={refPassword}
             />
             <br></br>
-            <button
-              onClick={() =>
-                props.login(refEmail.current.value, refPassword.current.value)
-                // login(refEmail.current.value, refPassword.current.value)
-              }
+            <Button
+              className="login-btn"
+              onClick={() => props.login(refEmail.current.value, refPassword.current.value)}
+              variant="contained" color="primary"
+              fullWidth="true"
             >
-              submit
-            </button>
+              LOGIN
+     </Button>
           </Box>
         </div>
       )}

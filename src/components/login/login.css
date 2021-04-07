@@ -1,11 +1,16 @@
 /* need more css */
-.register-box{
+.login-box{
     display: grid;
     grid-template-rows: auto;
     border: 2px solid black;
     margin: auto;
-    width: 50%;
+    width: 30%;
     height: 50%;
     padding: 5vh;
+    text-align: center;
     
+}
+
+.login-btn:hover {
+width: 100%;
 }

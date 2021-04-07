@@ -5,9 +5,9 @@ button {
     background-color: white;
     border-radius: 2px;
     border: none
-}
+} 
 
-button:hover {
+button:hover  {
     width: 36px;
     height: 36px;
     color: black;
@@ -17,12 +17,12 @@ button:hover {
 }
 
 
-table.meal-table {
+table.meal-table  {
     min-width: 370px;
     max-width: 568px;
     width: 100%;    
     margin-bottom: 6px;
-  border-collapm: collapse;
+  border-collapse: collapse;
   background-color: white;
   border: 1px solid #DFE0EB;
 }
@@ -48,9 +48,9 @@ input, input.cal-cell {
 }
 
 .cal-input {
-    /* width: 110px; */
+   
     width: 100%;
-    margin-left: 
+    /* margin-left:  */
 }
 
   input:focus {

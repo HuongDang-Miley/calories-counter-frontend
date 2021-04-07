@@ -1,14 +1,12 @@
+
 import { v4 as uuidv4 } from "uuid";
 import * as actionTypes from '../../stores/actions/actionTypes';
-import axios from 'axios'
-
-// let meals = axios
 
 const initialState = {
     meals: [
         {
             id: uuidv4(),
-            type: 'Breakfast',
+            mealType: 'Breakfast',
             food: [
                 { id: uuidv4(), name: 'Egg', cal: 70 },
                 { id: uuidv4(), name: 'Latte', cal: 50 },
@@ -17,7 +15,7 @@ const initialState = {
         },
         {
             id: uuidv4(),
-            type: 'Snack',
+            mealType: 'Snack',
             food: [
                 { id: uuidv4(), name: 'Protein Bar', cal: 100 },
                 { id: uuidv4(), name: 'Diet Coke', cal: 10 },
@@ -29,6 +27,13 @@ const initialState = {
 
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "SHOW_ALL_MEALS":
+            console.log(action.meals)
+            return {
+                ...state,
+                meals: action.meals
+            }
+
         case 'DELETE_ALL_MEALS':
             return {
                 ...state,

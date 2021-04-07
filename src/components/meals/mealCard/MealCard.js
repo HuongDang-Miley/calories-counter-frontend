@@ -49,7 +49,7 @@ export default function MealCard(props) {
                             </select>
                             : <>
                                 <img src={Meal} alt='meal-img' />
-                                {/* {props.item.mealType.toUpperCase()} */}
+                                {props.item.mealType.toUpperCase()}
 
                             </>}
                         </th>

@@ -1,56 +1,72 @@
-import React from "react";
-import "./workout.css";
+import React, { useRef } from 'react'
+import './workout.css'
+import WorkoutCard from './workoutCard/WorkoutCard'
+import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
-export const Workout = (props) => {
-  return (
-    <div className="workout-header">
-      <button className="add-workout" onClick={() => props.addWorkout()}>
-        {" "}
-        ADD A WORKOUT
-      </button>
-      <br />
-      <br />
-      <section className="child">
-        <h3>WORKOUT</h3>
-      </section>
+export default function Workout(props) {
+    let nameRef = useRef()
+    let calRef = useRef()
+    console.log(props.workouts.workouts)
 
-      {/* <div className = 'calories-header'> */}
-      <section className="child">
-        <h4>CALORIES BURNT</h4>
-      </section>
-      {/* </div> */}
-      {/* <button onClick ={props.toggleField }></button> */}
-      <br />
-      <br />
-      <input className="type-workout" placeholder="type workout"></input>
-      <input className="type-calories"></input>
-
-      {props.workouts.workouts.map((currWork) => (
+    return (
         <div>
-          <button
-            className="delete-workout-button"
-            onClick={() => props.deleteWorkout(currWork.id)}
-          >
-            x
-          </button>
-          <button
-            className="edit-workout-button"
-            onClick={() => props.editWorkout(currWork.id)}
-          >
-            ✏
-          </button>
-          <section className="workout-name both">
-            <ul>
-              <li>
-                <u>{currWork.name}</u>
-              </li>
-            </ul>
-          </section>
-          <section className="workout-calories both">{currWork.cal}</section>
-        </div>
-      ))}
-    </div>
-  );
-};
+            <table className='workout-table'>
+                <thead>
+                    <tr>
+                        <th className='meal-types'><img src='/fire-light-theme.svg' />WORKOUT</th>
+                        <th className='cal-cell'>CAL BURNED</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className='food-cell'>
+                            <input className='food-input' placeholder='Type Workout' type='text' ref={nameRef}></input>
+                        </td>
+                        <td className='cal-cell'>
+                            <input className='cal-input' placeholder='150' type='number' ref={calRef}></input>
+                        </td>
+                        {/* =========== Add Button =========== */}
+                        <td className="edit-btn"><button className='add-n-save-btn' onClick={() => props.addWorkout(nameRef.current.value, calRef.current.value)}><AddCircleRoundedIcon></AddCircleRoundedIcon></button></td>
+                        <td ></td>
+                    </tr>
+                    {/* ======================================= Display Food List ======================================= */}
+                    {props.workouts.workouts.map(workout => (
+                        <tr>
+                            <WorkoutCard
+                                key={workout.id}
+                                workout={workout}
+                                deleteWorkout={props.deleteWorkout}
+                                editWorkout={props.editWorkout}
+                            />
+                        </tr>
+                    ))}
+                </tbody>
+                {/* ======================================= Show Total Cal ======================================= */}
+                <tfoot>
+                    <tr>
+                        <td className='food-cell last-cell'>Total</td>
+                        <td className='cal-cell last-cell'>
+                            {props.workouts.workouts.length === 0
+                            ? <>0</>
+                            : <>{props.workouts.workouts.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</>
+                        }
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+                {/* <tfoot>
+                    <tr>
+                        <td className='food-cell last-cell'>Total Calories</td>
+                        <td className='call-cell last-cell'>0</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot> */}
+            </table>
 
-// export default Workout;
+        </div>
+    )
+}

@@ -9,13 +9,13 @@ export default function FoodCard(props) {
     let nameRef = useRef()
     let calRef = useRef()
 
-    const handleEditFood = (mealId, itemId, editName, editCal) => {
-        if (!editName || !editCal) {
-            alert('Field Cannot Be Empty')
-        } else {
-            props.editFood(mealId, itemId, editName, editCal)
-        }
-    }
+    // const handleEditFood = (mealId, itemId, editName, editCal) => {
+    //     if (!editName || !editCal) {
+    //         alert('Field Cannot Be Empty')
+    //     } else {
+    //         props.editFood(mealId, itemId, editName, editCal)
+    //     }
+    // }
 
     return (
         <tr>

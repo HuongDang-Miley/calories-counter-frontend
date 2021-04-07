@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import axios from 'axios'
 // import { Switch } from "@material-ui/core";
 import Login from "../login/Login";
 import { Register } from "../register/Register";
 import { connect } from "react-redux";
 import Meals from "../meals/Meals";
-import { Workout } from "../workout/Workout";
+import Workout from "../workout/Workout";
 import Sidebar from "../sidebar/Sidebar";
 import { stayUp } from "../../stores/actions/authActionCreator";
 import { TopNav } from "../topNav/TopNav";
@@ -18,59 +19,108 @@ import '../sidebar/sidebar.css'
 const Home = (props) => {
   let [userId, setUserId] = useState('')
   let [isAuth, setIsAuth] = useState(false)
+  // let [allMeals, setAllMeals] = useState([])
 
   useEffect(() => {
     let getToken = localStorage.getItem("jwtToken");
     let user = jwtDecode(getToken)
     setUserId(user.id)
     setIsAuth(true)
-    console.log(getToken);
+
+    // Fetch Meals in Backend
+    // axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
+    //   .then(result => {
+    //     props.showAllMeals(result.data)
+    //     // return setMeals(result.data)
+    //   })
   }, []);
 
-  console.log('userId', userId);
-  console.log('isAuth', isAuth);
+
+
   return (
     <div>
       HOME<br></br>
       {isAuth ? (
-      // {props.isAuth ? (
-        <div className='App'>
-          <div className="TopNav-wrapper">
-            <TopNav
-              setIsAuth={setIsAuth} 
-              isAuth={isAuth} />
-          </div>
-          <div className="sidebar-wrapper">
+        <div className="App">
+          <div className='sidebar-wrapper' >
             <Sidebar
               workouts={props.workouts}
               meals={props.meals}
               deleteAllMeals={props.deleteAllMeals}
               deleteAllWorkouts={props.deleteAllWorkouts}
-
-
             />
           </div>
-          <div className="meals-wrapper">
-            <Meals
-              meals={props.meals}
-              addFood={props.addFood}
-              deleteFood={props.deleteFood}
-              deleteMeal={props.deleteMeal}
-              editFood={props.editFood}
-              editMeal={props.editMeal}
-              handleSelectMeal={props.handleSelectMeal}
-            />
-          </div>
-          <div className="workout-wrapper">
-            <Workout
-              deleteWorkout={props.deleteWorkout}
-              toggleField={props.toggleField}
-              workouts={props.workouts}
-              editWorkout={props.editWorkout}
-              addWorkout={props.addWorkout}
-            />{" "}
+          <div className='main-wrapper'>
+            <div className='TopNav-wrapper' >
+              <TopNav
+                setIsAuth={setIsAuth}
+                isAuth={isAuth}
+              />
+            </div>
+            <div className='meals-n-workout-wrapper'>
+              <div className='meals-wrapper'>
+                <Meals
+                  meals={props.meals}
+                  addFood={props.addFood}
+                  deleteFood={props.deleteFood}
+                  deleteMeal={props.deleteMeal}
+                  editFood={props.editFood}
+                  editMeal={props.editMeal}
+                  handleSelectMeal={props.handleSelectMeal}
+                />
+              </div>
+              <div className='workout-wrapper'>
+                <Workout
+                  workouts={props.workouts}
+                  addWorkout={props.addWorkout}
+                  editWorkout={props.editWorkout}
+                  deleteWorkout={props.deleteWorkout}
+                />
+              </div>
+            </div>
           </div>
         </div>
+        // {props.isAuth ? (
+        // =============================================================
+        // <div className='App'>
+        //   <div className="TopNav-wrapper">
+        //     <TopNav
+        //       setIsAuth={setIsAuth}
+        //       isAuth={isAuth} />
+        //   </div>
+        //   <div className="sidebar-wrapper">
+        //     <Sidebar
+        //       workouts={props.workouts}
+        //       meals={props.meals}
+        //       deleteAllMeals={props.deleteAllMeals}
+        //       deleteAllWorkouts={props.deleteAllWorkouts}
+
+
+        //     />
+        //   </div>
+        //   <div className="meals-wrapper">
+        //     <Meals
+        //       meals={props.meals}
+        //       addFood={props.addFood}
+        //       deleteFood={props.deleteFood}
+        //       deleteMeal={props.deleteMeal}
+        //       editFood={props.editFood}
+        //       editMeal={props.editMeal}
+        //       handleSelectMeal={props.handleSelectMeal}
+        //     />
+        //   </div>
+        //   <div className="workout-wrapper">
+        //     <Workout
+        //       deleteWorkout={props.deleteWorkout}
+        //       toggleField={props.toggleField}
+        //       workouts={props.workouts}
+        //       editWorkout={props.editWorkout}
+        //       addWorkout={props.addWorkout}
+        //     />{" "}
+        //   </div>
+        // </div>
+
+        // =============================================================
       ) : (
         <div>
           <Link to="/login">LOGIN</Link>
@@ -93,6 +143,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showAllMeals: (meals) => {
+      dispatch({
+        type: "SHOW_ALL_MEALS",
+        meals: meals
+      })
+    },
     addFood: (targetId, food, cal) =>
       dispatch({
         type: "ADD_FOOD",
@@ -122,12 +178,12 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     // -------workout
-    deleteWorkout: (id) => dispatch({ type: "DELETE_WORK", targetId: id }),
+    deleteWorkout: (id) => dispatch({ type: "DELETE_WORKOUT", targetId: id }),
     toggleField: () => dispatch({ type: "TOGGLE_FIELD" }),
-    editWorkout: (targetId, name) =>
-      dispatch({ type: "EDIT_WORK", targetId: targetId, newName: name }),
+    editWorkout: (targetId, name, cal) =>
+      dispatch({ type: "EDIT_WORKOUT", targetId: targetId, newName: name, newCal: cal }),
     addWorkout: (name, cal) =>
-      dispatch({ type: "ADD_WORK", newName: name, newCal: cal }),
+      dispatch({ type: "ADD_WORKOUT", newName: name, newCal: cal }),
 
     // -------workout
     // ------sidebar

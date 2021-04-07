@@ -1,11 +1,12 @@
-import React,{connect} from 'react'
+import React, { connect, useState } from 'react'
+
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
 
 
 
- export  default function Meals(props) {
-     console.log(props)
+export default function Meals(props) {
+    
     return (
         <div>
             <div className='selector-wrapper' >
@@ -38,10 +39,9 @@ import MealCard from './mealCard/MealCard.js'
 //     return {
 //       state: state,
 //       meals: state.meals_Reducer
-  
+
 //     }
 //   }
-  
-  
+
+
 //   export default connect(mapStateToProps )(Meals);
-  
