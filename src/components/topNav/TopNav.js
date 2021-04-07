@@ -5,15 +5,20 @@ import { stayUp } from "../../stores/actions/authActionCreator";
 import { Redirect } from "react-router";
 
 export const TopNav = (props) => {
-  console.log(props.newState);
 
-
+  console.log('TopNav props', props)
+  const logOut = () => {
+    localStorage.removeItem("jwtToken");
+    props.setIsAuth(false)
+  }
+  
   return (
     <div>
       {/* {props.newState.isAuth ? */}
-       <div>TopNav</div> 
-       {/* : <Redirect to="/register" />} */}
-      {/* <button onClick={props.logout}>LOG OUT</button> */}
+      {props.isAuth ?
+        <div>TopNav</div>
+        : <Redirect to="/register" />}
+      <button onClick={() => logOut()}>LOG OUT</button>
     </div>
   );
 };

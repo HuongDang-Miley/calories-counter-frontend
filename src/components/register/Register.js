@@ -11,7 +11,6 @@ import {register} from '../../stores/actions/authActionCreator'
 
 //props from app.js
 export const Register = (props) => {
-  console.log(props);
   //   const { loggedIn, token } = props.login_Reducer;
 
   const refUsername = useRef();

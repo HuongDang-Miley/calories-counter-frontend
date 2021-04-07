@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { Switch } from "@material-ui/core";
 import Login from "../login/Login";
@@ -6,39 +6,48 @@ import { Register } from "../register/Register";
 import { connect } from "react-redux";
 import Meals from "../meals/Meals";
 import { Workout } from "../workout/Workout";
-import  Sidebar  from "../sidebar/Sidebar";
+import Sidebar from "../sidebar/Sidebar";
 import { stayUp } from "../../stores/actions/authActionCreator";
 import { TopNav } from "../topNav/TopNav";
 import { v4 as uuidv4 } from "uuid";
+import jwtDecode from 'jwt-decode';
 import '../../App.css'
 import '../sidebar/sidebar.css'
 // import Workout from '../workout/Workout'
 
 const Home = (props) => {
-  console.log(props);
+  let [userId, setUserId] = useState('')
+  let [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
     let getToken = localStorage.getItem("jwtToken");
-    // props.stayUp(getToken);
+    let user = jwtDecode(getToken)
+    setUserId(user.id)
+    setIsAuth(true)
     console.log(getToken);
   }, []);
 
+  console.log('userId', userId);
+  console.log('isAuth', isAuth);
   return (
     <div>
       HOME<br></br>
-      {props.isAuth ? (
+      {isAuth ? (
+      // {props.isAuth ? (
         <div className='App'>
           <div className="TopNav-wrapper">
-            <TopNav />
+            <TopNav
+              setIsAuth={setIsAuth} 
+              isAuth={isAuth} />
           </div>
           <div className="sidebar-wrapper">
-            <Sidebar 
-            workouts={props.workouts}
-            meals={props.meals}
-            deleteAllMeals={props.deleteAllMeals}
-            deleteAllWorkouts={props.deleteAllWorkouts}
-            
-            
+            <Sidebar
+              workouts={props.workouts}
+              meals={props.meals}
+              deleteAllMeals={props.deleteAllMeals}
+              deleteAllWorkouts={props.deleteAllWorkouts}
+
+
             />
           </div>
           <div className="meals-wrapper">

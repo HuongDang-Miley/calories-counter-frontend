@@ -22,6 +22,11 @@ const Login = (props) => {
   const refEmail = useRef();
   const refPassword = useRef();
 
+  // const login = (email, password) => {
+  //   props.login(email, password)
+  //   props.history.push('/home')
+  // }
+
   // useEffect(() => {
   //   if(props.newState.isAuth){
   //     props.history.push('/')
@@ -63,6 +68,7 @@ const Login = (props) => {
             <button
               onClick={() =>
                 props.login(refEmail.current.value, refPassword.current.value)
+                // login(refEmail.current.value, refPassword.current.value)
               }
             >
               submit

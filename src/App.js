@@ -26,8 +26,6 @@ import Meal from "./Meal.svg";
 import { v4 as uuidv4 } from "uuid";
 
 const App = (props) => {
-  console.log(props);
-
   
 
   return (
@@ -35,6 +33,7 @@ const App = (props) => {
       
       <Router>
         <Switch>
+          {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
