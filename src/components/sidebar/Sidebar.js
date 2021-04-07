@@ -77,7 +77,7 @@ export default function Sidebar(props) {
         fullWidth="true"
         startIcon={<DeleteIcon />}
       >
-        RESER DATA
+        RESET DATA
       </Button>
     </div>
   );
