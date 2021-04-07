@@ -5,7 +5,7 @@ const initialState = {
         { name: "Squat", cal: 30, id: uuidv4() },
     ],
     showAdd: true,
-    buttonText: "show"
+    buttonText: "add"
 
 }
 
@@ -13,8 +13,8 @@ const initialState = {
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
         case "TOGGLE_FIELD":
-            //i want this to toggle the add workout to add a new input field
-            const text =(state.showAdd ?  "Show" : "Hide")
+        //     //i want this to toggle the add workout to add a new input field
+            const text =(state.showAdd ?  "add" : "cancel")
             return{
                 ...state,
                 showAdd:!state.showAdd,
@@ -24,7 +24,7 @@ const workoutReducer = (state = initialState, action) => {
             // adding new workout
             case "ADD_WORK":
                 const newWorkout = {
-                    name:action.newNAme,
+                    name:action.newName,
                     cal:action.newCal,
                     id:uuidv4()
                 }
