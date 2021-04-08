@@ -27,10 +27,10 @@ const Home = (props) => {
     setUserId(user.id)
     setIsAuth(true)
 
-    // Fetch Meals in Backend
-    axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
-      // .then(result => {return setAllMeals(result.data)})
-      .then(result => localStorage.setItem('allMeal', result.data))
+    // // Fetch Meals in Backend
+    // axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
+    //   // .then(result => {return setAllMeals(result.data)})
+    //   .then(result => localStorage.setItem('allMeal', result.data))
 
   }, []);
 
