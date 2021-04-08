@@ -1,25 +1,102 @@
-// import axios from "axios";
-// import * as actionTypes from "./actionTypes";
-// import jwtDecode from "jwt-decode";
+import axios from "axios";
+import * as actionTypes from "./actionTypes";
+import jwtDecode from "jwt-decode";
+import { v4 as uuidv4 } from "uuid";
 
-// //register------------start
-// export const addMeal = () => async (dispatch) => {
-//   try {
-//     let payload = await axios.post(
-//       "http://localhost:4000/api/meals/add-meals"
-//       //   userInfo
-//     );
-//     console.log(payload);
-//     dispatch({
-//       type: actionTypes.ADD_MEAL,
-//       //   message: payload.data.message,
-//     });
-//     // alert(payload.data.message);
-//   } catch (e) {
-//     // dispatch({
-//     //   type: actionTypes.AUTH_USER_REGISTER_SUCCESSFUL,
-//     //   message: e.response.data.message,
-//     // });
-//     alert(e.response.data.message);
-//   }
-// };
+
+// =========================== MEALS FUNCTION (for mealReducer)===========================
+
+export const showAllMeals = () => async dispatch => {
+    // let response = await axios.get('http=//jsonplaceholder.typicode.com/posts7')
+    let response = await axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
+    console.log(response.data)
+    dispatch({
+        type: "SHOW_ALL_MEALS",
+        meals: response.data
+    })
+}
+
+export const addFood = (targetId, food, cal) => dispatch => {
+    dispatch({
+        type: "ADD_FOOD",
+        targetId: targetId,
+        newFood: { id: uuidv4(), name: food, cal: cal },
+    })
+}
+
+export const deleteFood = (targetMealId, targetFoodId) => dispatch => {
+    dispatch({
+        type: "DELETE_FOOD",
+        targetMealId: targetMealId,
+        targetFoodId: targetFoodId,
+    })
+}
+export const deleteMeal = (targetMealId) => dispatch => {
+    dispatch({
+        type: "DELETE_MEAL",
+        targetMealid: targetMealId
+    })
+}
+
+export const editFood = (targetMealId, targetFoodId, name, cal) => dispatch => {
+    dispatch({
+        type: "EDIT_FOOD",
+        targetMealId: targetMealId,
+        targetFoodId: targetFoodId,
+        name: name,
+        cal: cal,
+    })
+}
+
+export const editMeal = (targetMealId, name) => dispatch => {
+    dispatch({
+        type: "EDIT_MEAL",
+        targetMealid: targetMealId,
+        name: name
+    })
+}
+
+export const handleSelectMeal = async (mealType) => dispatch => {
+    dispatch({
+        type: "ADD_MEAL",
+        mealtype: mealType
+    });
+}
+
+
+
+// =========================== WORKOUT FUNCTION (for workoutReducer) ===========================
+export const deleteWorkout = (id) => dispatch => {
+    dispatch({
+        type: "DELETE_WORKOUT",
+        targetid: id
+    })
+}
+
+
+export const editWorkout = (targetId, name, cal) => dispatch => {
+    dispatch({
+        type: "EDIT_WORKOUT",
+        targetid: targetId,
+        newName: name,
+        newCal: cal
+    })
+}
+
+export const addWorkout = (name, cal) => dispatch => {
+    dispatch({
+        type: "ADD_WORKOUT",
+        newName: name,
+        newCal: cal
+    })
+}
+
+
+// =========================== MEALS & WORKOUT FUNCTION FOR SIDE BAR ===========================
+export const deleteAllWorkouts = () => dispatch => {
+    dispatch({ type: 'DELETE_ALL_WORKOUTS' })
+}
+
+export const deleteAllMeals = () => dispatch => {
+    dispatch({ type: 'DELETE_ALL_MEALS' })
+}

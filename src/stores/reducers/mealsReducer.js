@@ -33,7 +33,7 @@ const initialState = {
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "SHOW_ALL_MEALS":
-            console.log(action.meals)
+            console.log("SHOW_ALL_MEALS action", action)
             return {
                 ...state,
                 meals: action.meals

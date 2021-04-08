@@ -35,13 +35,3 @@ export default function Meals(props) {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//       state: state,
-//       meals: state.meals_Reducer
-
-//     }
-//   }
-
-
-//   export default connect(mapStateToProps )(Meals);
