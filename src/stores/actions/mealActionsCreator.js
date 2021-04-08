@@ -7,12 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 // =========================== MEALS FUNCTION (for mealReducer)===========================
 
 export const showAllMeals = () => async dispatch => {
-    // let response = await axios.get('http=//jsonplaceholder.typicode.com/posts7')
-    let response = await axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
-    console.log(response.data)
+    // let response = await axios.get('http://jsonplaceholder.typicode.com/posts')
+    let response = await axios.get('http://localhost:4000/api/meals/view-meals/606e944ed1859c59c0d21a85')
     dispatch({
         type: "SHOW_ALL_MEALS",
-        meals: response.data
+        meals: response.data.meals
     })
 }
 
