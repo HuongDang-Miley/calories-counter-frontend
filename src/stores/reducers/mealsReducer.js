@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 const initialState = {
-    meals: []
+    meals: [],
 }
 
 
@@ -20,7 +20,7 @@ const mealsReducer = (state = initialState, action) => {
             // return state
             return {
                 ...state,
-                meals: action.meals
+                meals: action.meals,
             }
 
         case 'DELETE_ALL_MEALS':

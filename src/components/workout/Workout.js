@@ -6,7 +6,7 @@ import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 export default function Workout(props) {
     let nameRef = useRef()
     let calRef = useRef()
-    
+
     return (
         <div>
             <table className='workout-table'>
@@ -27,13 +27,14 @@ export default function Workout(props) {
                             <input className='cal-input' placeholder='150' type='number' ref={calRef}></input>
                         </td>
                         {/* =========== Add Button =========== */}
-                        <td className="edit-btn"><button className='add-n-save-btn' onClick={() => props.addWorkout(nameRef.current.value, calRef.current.value)}><AddCircleRoundedIcon></AddCircleRoundedIcon></button></td>
+                        <td className="edit-btn"><button className='add-n-save-btn' onClick={() => props.addWorkout(props.userId, nameRef.current.value, calRef.current.value)}><AddCircleRoundedIcon></AddCircleRoundedIcon></button></td>
                         <td ></td>
                     </tr>
-                    {/* ======================================= Display Food List ======================================= */}
+                    {/* ======================================= Display Workout List List ======================================= */}
                     {props.workouts.workouts.map(workout => (
-                        <tr>
+                        <tr key={workout.id}>
                             <WorkoutCard
+                                userId={props.userId}
                                 key={workout.id}
                                 workout={workout}
                                 deleteWorkout={props.deleteWorkout}
@@ -48,9 +49,9 @@ export default function Workout(props) {
                         <td className='food-cell last-cell'>Total</td>
                         <td className='cal-cell last-cell'>
                             {props.workouts.workouts.length === 0
-                            ? <>0</>
-                            : <>{props.workouts.workouts.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</>
-                        }
+                                ? <>0</>
+                                : <>{props.workouts.workouts.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</>
+                            }
                         </td>
                         <td></td>
                         <td></td>

@@ -4,7 +4,7 @@ import './meals.css'
 import MealCard from './mealCard/MealCard.js'
 import { 
     addMeal,
-    showAllMeals,
+    showAllData,
     editMeal,
     deleteMeal,
     addFood,

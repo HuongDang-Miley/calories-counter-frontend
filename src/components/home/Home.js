@@ -16,7 +16,7 @@ import '../../App.css'
 import '../sidebar/sidebar.css'
 import {
   addMeal,
-  showAllMeals,
+  showAllData,
   editMeal,
   deleteMeal,
   addFood,
@@ -39,11 +39,11 @@ const Home = (props) => {
     await setUserId(user.id)
     await setEmail(user.email)
     await setIsAuth(true)
-    await props.showAllMeals(user.id)
+    await props.showAllData(user.id)
   }, []);
 
 
-// console.log('email', email)
+  // console.log('email', email)
   return (
     <div>
       HOME<br></br>
@@ -80,6 +80,7 @@ const Home = (props) => {
               </div>
               <div className='workout-wrapper'>
                 <Workout
+                  userId={userId}
                   workouts={props.workouts}
                   addWorkout={props.addWorkout}
                   editWorkout={props.editWorkout}
@@ -111,7 +112,7 @@ const mapStateToProps = (state) => {
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-// showAllMeals: (meals) => {
+// showAllData: (meals) => {
 //   dispatch({
 //     type: "SHOW_ALL_MEALS",
 //     meals: meals
@@ -145,7 +146,7 @@ const mapStateToProps = (state) => {
 //   dispatch({ type: "ADD_MEAL", mealType: mealType });
 // },
 
-// showAllMeals: () => async dispatch => {
+// showAllData: () => async dispatch => {
 //   let response = await axios.get('http://jsonplaceholder.typicode.com/posts7')
 //   // let response = await axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
 //   console.log(response.data)
@@ -170,7 +171,7 @@ const mapStateToProps = (state) => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps, {
-  showAllMeals,
+  showAllData,
   editMeal,
   addMeal,
   deleteMeal,

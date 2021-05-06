@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // =========================== MEALS FUNCTION (for mealReducer)===========================
 
-export const showAllMeals = (userId) => async dispatch => {
+export const showAllData = (userId) => async dispatch => {
     console.log('userId', userId)
     // let response = await axios.get('http://localhost:4000/api/meals/show-all-meals/606e944ed1859c59c0d21a85')
     let response = await axios.get(`http://localhost:4000/api/meals/show-all-meals/${userId}`)

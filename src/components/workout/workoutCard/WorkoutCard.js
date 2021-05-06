@@ -28,7 +28,7 @@ export default function WorkoutCard(props) {
                 ? <button
                     className='add-n-save-btn'
                     onClick={() => {
-                        props.editWorkout(props.workout.id, nameRef.current.value, calRef.current.value)
+                        props.editWorkout(props.userId, props.workout.id, nameRef.current.value, calRef.current.value)
                         setShowEdit(!showEdit)
                     }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
                 //======================================= => edit button
@@ -39,7 +39,7 @@ export default function WorkoutCard(props) {
             {/* ======================================= Delete Button ======================================= */}
             <td className='del-btn'><button
                 className={showEdit ? 'del-btn-focus' : null}
-                onClick={() => props.deleteWorkout(props.workout.id)}><DeleteIcon></DeleteIcon></button>
+                onClick={() => props.deleteWorkout(props.userId, props.workout.id)}><DeleteIcon></DeleteIcon></button>
             </td>
         </>
     )

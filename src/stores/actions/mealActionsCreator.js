@@ -7,14 +7,14 @@ import { v4 as uuidv4 } from "uuid";
 
 // =========================== MEALS FUNCTION (for mealReducer)===========================
 
-export const showAllMeals = (userId) => async dispatch => {
+export const showAllData = (userId) => async dispatch => {
     // console.log('userId', userId)
     let response = await axios.get(`http://localhost:4000/api/data/show-all-data/${userId}`)
     console.log('response.data.meals', response.data)
     dispatch({
         type: "SHOW_ALL_DATA",
         meals: response.data.meals,
-        wokrout: response.data.workout,
+        workouts: response.data.workouts,
     })
 }
 
@@ -75,26 +75,30 @@ export const editMeal = (targetMealId, name) => dispatch => {
 
 
 // =========================== WORKOUT FUNCTION (for workoutReducer) ===========================
-export const deleteWorkout = (id) => dispatch => {
+export const deleteWorkout = (userId, id) => dispatch => {
     dispatch({
         type: "DELETE_WORKOUT",
-        targetid: id
+        targetId: id,
+        userId: userId,
     })
 }
 
 
-export const editWorkout = (targetId, name, cal) => dispatch => {
+export const editWorkout = (userId, targetId, name, cal) => dispatch => {
     dispatch({
         type: "EDIT_WORKOUT",
-        targetid: targetId,
+        userId: userId,
+        targetId: targetId,
         newName: name,
         newCal: cal
     })
 }
 
-export const addWorkout = (name, cal) => dispatch => {
+export const addWorkout = (userId, name, cal) => dispatch => {
+    console.log(userId, userId)
     dispatch({
         type: "ADD_WORKOUT",
+        userId: userId,
         newName: name,
         newCal: cal
     })

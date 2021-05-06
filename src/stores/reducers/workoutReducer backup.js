@@ -16,22 +16,21 @@ const initialState = {
 
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
-
-        case "SHOW_ALL_DATA":
-            console.log("SHOW_ALL_DATA action", action)
-            // return state
-            return {
-                ...state,
-                workouts: action.workouts,
-            }
-
         case 'DELETE_ALL_WORKOUTS':
-            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: [] })
             return {
                 ...state,
                 workouts: []
             }
 
+        case "TOGGLE_FIELD":
+            //i want this to toggle the add workout to add a new input field
+            const text = (state.showAdd ? "Show" : "Hide")
+            return {
+                ...state,
+                showAdd: !state.showAdd,
+                buttonText: text
+
+            }
         // adding new workout
         case "ADD_WORKOUT":
             const newWorkout = {
@@ -39,8 +38,8 @@ const workoutReducer = (state = initialState, action) => {
                 cal: action.newCal,
                 id: uuidv4()
             }
-            
-            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: [...state.workouts, newWorkout] })
+            console.log(newWorkout);
+            axios.post(`http://localhost:4000/api/workout/update-workout`, { userId: action.userId, workout: newWorkout })
             return {
                 ...state,
                 workouts: [...state.workouts, newWorkout]
@@ -49,15 +48,12 @@ const workoutReducer = (state = initialState, action) => {
 
 
         case "DELETE_WORKOUT":
-            console.log(action)
-
             const newArr = state.workouts.filter((currEl) => {
                 return currEl.id !== action.targetId;
-            });
 
-            console.log('newArr', newArr)
+            }
 
-            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: newArr })
+            );
 
             return {
                 ...state,
@@ -77,15 +73,17 @@ const workoutReducer = (state = initialState, action) => {
                     return item
                 }
             })
-
-            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: updateArr })
             return {
                 ...state,
                 workouts: updateArr
+
             }
 
 
+
+
         default:
+
             return state
     }
 }
