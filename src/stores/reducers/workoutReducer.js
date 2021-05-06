@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import axios from 'axios'
+
 const initialState = {
     workouts: [
         // { id: uuidv4(), name: "Jumping Jack", cal: 100 },
@@ -37,7 +39,7 @@ const workoutReducer = (state = initialState, action) => {
                 id: uuidv4()
             }
             console.log(newWorkout);
-
+            axios.post(`http://localhost:4000/api/workout/update-workout`, { userId: action.userId, workout: newWorkout })
             return {
                 ...state,
                 workouts: [...state.workouts, newWorkout]
