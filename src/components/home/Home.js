@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import Meals from "../meals/Meals";
 import Workout from "../workout/Workout";
 import Sidebar from "../sidebar/Sidebar";
@@ -8,21 +7,8 @@ import { TopNav } from "../topNav/TopNav";
 import jwtDecode from 'jwt-decode';
 import '../../App.css'
 import '../sidebar/sidebar.css'
-import {
-  addMeal,
-  showAllData,
-  editMeal,
-  deleteMeal,
-  addFood,
-  editFood,
-  deleteFood,
-  addWorkout,
-  editWorkout,
-  deleteWorkout,
-  deleteAllMeals,
-  deleteAllWorkouts,
-
-} from '../../stores/actions/mealActionsCreator'
+import { connect } from "react-redux";
+import { showAllData } from '../../stores/actions/mealActionsCreator'
 
 const Home = (props) => {
   let [userId, setUserId] = useState('')
@@ -40,7 +26,6 @@ const Home = (props) => {
   }, []);
 
 
-  // console.log('email', email)
   return (
     <div>
       HOME<br></br>
@@ -49,10 +34,6 @@ const Home = (props) => {
           <div className='sidebar-wrapper' >
             <Sidebar
               userId={userId}
-              workouts={props.workouts}
-              meals={props.meals}
-              deleteAllMeals={props.deleteAllMeals}
-              deleteAllWorkouts={props.deleteAllWorkouts}
             />
           </div>
           <div className='main-wrapper'>
@@ -67,22 +48,11 @@ const Home = (props) => {
               <div className='meals-wrapper'>
                 <Meals
                   userId={userId}
-                  meals={props.meals}
-                  addFood={props.addFood}
-                  deleteFood={props.deleteFood}
-                  deleteMeal={props.deleteMeal}
-                  editFood={props.editFood}
-                  editMeal={props.editMeal}
-                  addMeal={props.addMeal}
                 />
               </div>
               <div className='workout-wrapper'>
                 <Workout
                   userId={userId}
-                  workouts={props.workouts}
-                  addWorkout={props.addWorkout}
-                  editWorkout={props.editWorkout}
-                  deleteWorkout={props.deleteWorkout}
                 />
               </div>
             </div>
@@ -99,25 +69,7 @@ const Home = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    meals: state.meals_Reducer,
-    workouts: state.workout_Reducer,
-  };
-};
+const mapStateToProps = (state) => { return state };
 
 
-export default connect(mapStateToProps, {
-  showAllData,
-  editMeal,
-  addMeal,
-  deleteMeal,
-  addFood,
-  editFood,
-  deleteFood,
-  addWorkout,
-  editWorkout,
-  deleteWorkout,
-  deleteAllMeals,
-  deleteAllWorkouts,
-})(Home);
+export default connect(mapStateToProps, { showAllData })(Home);

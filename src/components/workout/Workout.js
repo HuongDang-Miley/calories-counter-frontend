@@ -3,11 +3,18 @@ import './workout.css'
 import WorkoutCard from './WorkoutCard'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
-export default function Workout(props) {
+import { connect } from "react-redux";
+import { addWorkout, editWorkout, deleteWorkout } from '../../stores/actions/mealActionsCreator'
+
+function Workout(props) {
     let nameRef = useRef()
     let calRef = useRef()
 
     const handleAddWorkout = () => {
+        if (nameRef.current.value === '' || calRef.current.value === '') {
+            alert('field cannot be empty')
+            return
+        } 
         props.addWorkout(props.userId, nameRef.current.value, calRef.current.value)
         nameRef.current.value = ''
         calRef.current.value = ''
@@ -37,7 +44,7 @@ export default function Workout(props) {
                         <td ></td>
                     </tr>
                     {/* ======================================= Display Workout List List ======================================= */}
-                    {props.workouts.workouts.map(workout => (
+                    {props.workouts.map(workout => (
                         <tr key={workout.id}>
                             <WorkoutCard
                                 userId={props.userId}
@@ -51,9 +58,9 @@ export default function Workout(props) {
                     <tr>
                         <td className='food-cell last-cell'>Total</td>
                         <td className='cal-cell last-cell'>
-                            {props.workouts.workouts.length === 0
+                            {props.workouts.length === 0
                                 ? <>0</>
-                                : <>{props.workouts.workouts.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</>
+                                : <>{props.workouts.map(item => Number(item.cal)).reduce((sum, item) => sum += item)}</>
                             }
                         </td>
                         <td></td>
@@ -67,3 +74,15 @@ export default function Workout(props) {
 }
 
 
+const mapStateToProps = (state) => {
+    return {
+        workouts: state.workout_Reducer.workouts,
+    };
+};
+
+
+export default connect(mapStateToProps, {
+    addWorkout,
+    editWorkout,
+    deleteWorkout,
+})(Workout);

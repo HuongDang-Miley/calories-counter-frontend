@@ -6,10 +6,19 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+import { connect } from "react-redux";
 
-export default function MealCard(props) {
+import {
+    addMeal,
+    editMeal,
+    deleteMeal,
+    addFood,
+    editFood,
+    deleteFood,
+} from '../../../stores/actions/mealActionsCreator'
 
-    
+function MealCard(props) {
+
     const [showEdit, setShowEdit] = useState(false)
     const [selectMeal, setSelectMeal] = useState(null)
     let foodRef = useRef()
@@ -43,7 +52,7 @@ export default function MealCard(props) {
                     <tr>
                         <th className='meal-types'>{showEdit //=> show selector when hit edit button
                             ? <select className='select-button' onChange={(event) => setSelectMeal(event.target.value)}>
-                            {/* ? <select className='select-button' onChange={(event) => console.log(event.target.value)}> */}
+                                {/* ? <select className='select-button' onChange={(event) => console.log(event.target.value)}> */}
                                 <option value='none' defaultValue hidden>SELECT MEAL TYPE</option>
                                 <option value="BREAKFAST">BREAKFAST</option>
                                 <option value="BRUNCH">BRUNCH</option>
@@ -119,3 +128,18 @@ export default function MealCard(props) {
         </div>
     )
 }
+
+const mapStateToProps = (state) => { return state }
+
+
+export default connect(mapStateToProps, {
+    editMeal,
+    addMeal,
+    deleteMeal,
+    addFood,
+    editFood,
+    deleteFood,
+})(MealCard);
+
+
+

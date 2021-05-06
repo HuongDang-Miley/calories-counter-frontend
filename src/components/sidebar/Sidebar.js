@@ -2,10 +2,13 @@ import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import "./sidebar.css";
+import { connect } from "react-redux";
+import { deleteAllMeals, deleteAllWorkouts } from '../../stores/actions/mealActionsCreator'
 
-export default function Sidebar(props) {
-  console.log('props in sidebar', props)
-  let totalCalIntake = props.meals.meals
+function Sidebar(props) {
+  // console.log('props in sidebar', props)
+  let totalCalIntake = props.meals
+
     // map through meals array return an array that has child arrays of calories only
     .map((meal) =>
       meal.food
@@ -20,7 +23,7 @@ export default function Sidebar(props) {
       return (total += Number(mealCal));
     }, 0);
 
-  let totalCalBurned = props.workouts.workouts
+  let totalCalBurned = props.workouts
     // return an array of calories only
     .map((workout) => workout.cal)
     // return total calories of the array
@@ -37,12 +40,12 @@ export default function Sidebar(props) {
 
   return (
     <div>
-      <img className="logo" src="/logo.svg" alt='logo'/>
+      <img className="logo" src="/logo.svg" alt='logo' />
       <table className="sidebar-table">
         <thead>
           <tr>
             <th className="sidebar-img-cell">
-              <img className="sidebar-img" src="/total-dark-theme.svg"  alt='total'/>
+              <img className="sidebar-img" src="/total-dark-theme.svg" alt='total' />
             </th>
             <th className="sidebar-title-cell">Total Cal:</th>
             <th className="sidebar-cal-cell">
@@ -53,7 +56,7 @@ export default function Sidebar(props) {
         <tbody>
           <tr>
             <td className="sidebar-img-cell">
-              <img className="sidebar-img" src="/meal-dark-theme.svg" alt='meal'/>
+              <img className="sidebar-img" src="/meal-dark-theme.svg" alt='meal' />
             </td>
             <td className="sidebar-title-cell">Cal Intake:</td>
             <td className="sidebar-cal-cell">{totalCalIntake}</td>
@@ -83,15 +86,15 @@ export default function Sidebar(props) {
   );
 }
 
-// export default connect(mapStateToProps, {
-//   showAllData,
-//   editMeal,
-//   addMeal,
-//   deleteMeal,
-//   addFood,
-//   editFood,
-//   deleteFood,
-//   addWorkout,
-//   editWorkout,
-//   deleteWorkout
-// })(Sidebar);
+const mapStateToProps = (state) => {
+  return {
+    meals: state.meals_Reducer.meals,
+    workouts: state.workout_Reducer.workouts,
+  };
+};
+
+
+export default connect(mapStateToProps, {
+  deleteAllMeals,
+  deleteAllWorkouts,
+})(Sidebar);

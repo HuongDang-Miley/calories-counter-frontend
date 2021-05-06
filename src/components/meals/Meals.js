@@ -1,18 +1,11 @@
-import React, { connect } from 'react'
-
+import React from 'react'
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
-// import {
-//     addMeal,
-//     editMeal,
-//     deleteMeal,
-//     addFood,
-//     editFood,
-//     deleteFood,
-// } from '../../stores/actions/mealActionsCreator'
+import { addMeal } from '../../stores/actions/mealActionsCreator'
+import { connect } from "react-redux";
 
 
-export default function Meals(props) {
+function Meals(props) {
 
     return (
         <div>
@@ -27,38 +20,23 @@ export default function Meals(props) {
                 </select>
             </div>
 
-            {props.meals.meals.map(item => (
+            {props.meals.map(item => (
                 <MealCard
                     key={item.id}
                     item={item}
                     userId={props.userId}
-                    addFood={props.addFood}
-                    deleteFood={props.deleteFood}
-                    deleteMeal={props.deleteMeal}
-                    editFood={props.editFood}
-                    editMeal={props.editMeal}
                 />
             ))}
         </div>
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         meals: state.meals_Reducer,
-//         workouts: state.workout_Reducer,
-//     };
-// };
+const mapStateToProps = (state) => {
+    return {
+        meals: state.meals_Reducer.meals,
+    };
+};
 
 
-// export default connect(mapStateToProps, {
-//     editMeal,
-//     addMeal,
-//     deleteMeal,
-//     addFood,
-//     editFood,
-//     deleteFood,
-// })(Meals);
-
-
+export default connect(mapStateToProps, { addMeal })(Meals);
 
