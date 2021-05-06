@@ -20,7 +20,7 @@ export default function MealCard(props) {
         if (!food || !cal) {
             alert('Field Cannot Be Emtpy')
         } else {
-            props.addFood(props.item.id, food, cal)
+            props.addFood(props.userId, props.item.id, food, cal)
             foodRef.current.value = ''
             calRef.current.value = ''
         }
@@ -69,7 +69,8 @@ export default function MealCard(props) {
                         </th>
 
                         {/* =========== Delete Button =========== */}
-                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.item.id)}><DeleteIcon></DeleteIcon></button></th>
+                        {/* <th className='del-btn'><button onClick={() =>console.log(props.item.id)}><DeleteIcon></DeleteIcon></button></th> */}
+                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.userId, props.item._id)}><DeleteIcon></DeleteIcon></button></th>
                     </tr>
 
                 </thead>
@@ -78,6 +79,7 @@ export default function MealCard(props) {
                 <tbody>
                     {props.item.food.map(item => (
                         <FoodCard
+                            userId={props.userId}
                             key={item.id}
                             mealId={props.item.id}
                             item={item}

@@ -9,23 +9,23 @@ import fetch from 'fetch'
 
 const initialState = {
     meals: [
-        {
-            id: uuidv4(),
-            mealType: 'Breakfast',
-            food: [
-                { id: uuidv4(), name: 'Egg', cal: 70 },
-                { id: uuidv4(), name: 'Latte', cal: 50 },
-                { id: uuidv4(), name: 'Bread', cal: 100 },
-            ]
-        },
-        {
-            id: uuidv4(),
-            mealType: 'Snack',
-            food: [
-                { id: uuidv4(), name: 'Protein Bar', cal: 100 },
-                { id: uuidv4(), name: 'Diet Coke', cal: 10 },
-            ]
-        },
+        // {
+        //     id: uuidv4(),
+        //     mealType: 'Breakfast',
+        //     food: [
+        //         { id: uuidv4(), name: 'Egg', cal: 70 },
+        //         { id: uuidv4(), name: 'Latte', cal: 50 },
+        //         { id: uuidv4(), name: 'Bread', cal: 100 },
+        //     ]
+        // },
+        // {
+        //     id: uuidv4(),
+        //     mealType: 'Snack',
+        //     food: [
+        //         { id: uuidv4(), name: 'Protein Bar', cal: 100 },
+        //         { id: uuidv4(), name: 'Diet Coke', cal: 10 },
+        //     ]
+        // },
     ]
 }
 
@@ -33,7 +33,7 @@ const initialState = {
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "SHOW_ALL_MEALS":
-            console.log("SHOW_ALL_MEALS action", action.meals)
+            console.log("SHOW_ALL_MEALS action", action)
 
             // return state
             return {
@@ -73,6 +73,7 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'DELETE_FOOD':
+            console.log(action)
             let deleteFoodInMeals = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     let deleteFood = meal.food.filter(food => food.id !== action.targetFoodId)
@@ -85,6 +86,8 @@ const mealsReducer = (state = initialState, action) => {
                     return meal
                 }
             })
+
+            axios.post(`http://localhost:4000/api/meals/update-meals`, { userId: action.userId, meals: deleteFoodInMeals })
             return {
                 ...state,
                 meals: deleteFoodInMeals
@@ -92,7 +95,8 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'ADD_FOOD':
-            let addFoodInMeal = state.meals.map(meal => {
+            console.log(action)
+            let updateMeals = state.meals.map(meal => {
                 if (meal.id === action.targetId) {
                     return {
                         ...meal,
@@ -102,10 +106,30 @@ const mealsReducer = (state = initialState, action) => {
                     return meal
                 }
             })
+            console.log('addFoodInMeal', updateMeals)
+            axios.post(`http://localhost:4000/api/meals/update-meals`, { userId: action.userId, meals: updateMeals })
+
             return {
                 ...state,
-                meals: addFoodInMeal
+                meals: updateMeals
             }
+
+
+        // let addFoodInMeal = state.meals.map(meal => {
+        //     if (meal.id === action.targetId) {
+        //         return {
+        //             ...meal,
+        //             food: [...meal.food, action.newFood]
+        //         }
+        //     } else {
+        //         return meal
+        //     }
+        // })
+
+        // return {
+        //     ...state,
+        //     meals: addFoodInMeal
+        // }
 
 
         case "EDIT_MEAL":
@@ -122,10 +146,14 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'DELETE_MEAL':
-            console.log('state.meals', state.meals)
-            
-            let deleteMeal = state.meals.filter(meal => meal.id !== action.targetMealId)
-            
+            console.log('action', action)
+
+            let deleteMeal = state.meals.filter(meal => {
+                console.log('meal', meal)
+                if (meal._id) { return meal._id !== action.targetMealId }
+                if (meal.id) { return meal.id !== action.targetMealId }
+            })
+
             return {
                 ...state,
                 meals: deleteMeal

@@ -2,13 +2,13 @@ import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import jwtDecode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
-import { connect } from "react-redux";
 
 
 // =========================== MEALS FUNCTION (for mealReducer)===========================
 
 export const showAllMeals = (userId) => async dispatch => {
     console.log('userId', userId)
+    // let response = await axios.get('http://localhost:4000/api/meals/show-all-meals/606e944ed1859c59c0d21a85')
     let response = await axios.get(`http://localhost:4000/api/meals/show-all-meals/${userId}`)
     console.log('response.data.meals', response.data)
     dispatch({
@@ -17,9 +17,19 @@ export const showAllMeals = (userId) => async dispatch => {
     })
 }
 
+
+// export const addFood = (userId, targetId, food, cal) => dispatch => {
+//     // let response = await axios.get(`http://localhost:4000/api/meals/add-meal`, {})
+//     dispatch({
+//         type: "ADD_FOOD",
+//         targetId: targetId,
+//         newFood: { id: uuidv4(), name: food, cal: cal },
+//     })
+// }
 export const addFood = (userId, targetId, food, cal) => dispatch => {
 
     console.log('userId:', userId, 'targetId:', targetId, 'food:', food, 'cal:', cal)
+    // let response = await axios.get(`http://localhost:4000/api/meals/add-meal`, {})
     dispatch({
         type: "ADD_FOOD",
         targetId: targetId,
@@ -28,33 +38,32 @@ export const addFood = (userId, targetId, food, cal) => dispatch => {
     })
 }
 
-export const addMeal = ( mealType) => async dispatch => {
-   
-    dispatch({
-        type: "ADD_MEAL",
-        mealType: mealType
-    });
-}
-
- export const deleteFood = (userId, targetMealId, targetFoodId) => dispatch => {
+export const deleteFood = (targetMealId, targetFoodId) => dispatch => {
     dispatch({
         type: "DELETE_FOOD",
-        userId: userId,
         targetMealId: targetMealId,
         targetFoodId: targetFoodId,
     })
 }
-
-
 export const deleteMeal = (userId, targetMealId) => async dispatch => {
+
     await axios.delete(`http://localhost:4000/api/meals/delete-meal`, { params: { userId: userId, targetMealId: targetMealId } })
+
     await dispatch({
         type: "DELETE_MEAL",
         targetMealId: targetMealId
     })
 }
 
-
+// export const editFood = (targetMealId, targetFoodId, name, cal) => dispatch => {
+//     dispatch({
+//         type: "EDIT_FOOD",
+//         targetMealId: targetMealId,
+//         targetFoodId: targetFoodId,
+//         name: name,
+//         cal: cal,
+//     })
+// }
 export const editFood = (targetMealId, targetFoodId, name, cal) => dispatch => {
     dispatch({
         type: "EDIT_FOOD",
@@ -72,6 +81,26 @@ export const editMeal = (targetMealId, name) => dispatch => {
         name: name
     })
 }
+
+// export const addMeal = (userId, mealType) => async dispatch => {
+//     await axios.post(`http://localhost:4000/api/meals/add-meal`, { userId: userId, mealType: mealType } )
+//     console.log('userId:', userId, 'mealType:', mealType)
+//     dispatch({
+//         type: "ADD_MEAL",
+//         mealType: mealType
+//     });
+// }
+
+
+// export const addMeal = (userId, mealType) => async dispatch => {
+//     // await axios.post(`http://localhost:4000/api/meals/add-meal`, { userId: userId, mealType: mealType } )
+//     console.log('userId:', userId, 'mealType:', mealType)
+//     dispatch({
+//         type: "ADD_MEAL",
+//         mealType: mealType
+//     });
+// }
+
 
 
 // =========================== WORKOUT FUNCTION (for workoutReducer) ===========================

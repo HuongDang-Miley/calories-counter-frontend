@@ -29,19 +29,21 @@ import {
 
 const Home = (props) => {
   let [userId, setUserId] = useState('')
+  let [email, setEmail] = useState('')
   let [isAuth, setIsAuth] = useState(false)
 
 
-  useEffect(() => {
-    let getToken = localStorage.getItem("jwtToken");
-    let user = jwtDecode(getToken)
-    setUserId(user.id)
-    setIsAuth(true)
-    props.showAllMeals(user.id)
+  useEffect(async () => {
+    let getToken = await localStorage.getItem("jwtToken");
+    let user = await jwtDecode(getToken)
+    await setUserId(user.id)
+    await setEmail(user.email)
+    await setIsAuth(true)
+    await props.showAllMeals(user.id)
   }, []);
 
 
-
+// console.log('email', email)
   return (
     <div>
       HOME<br></br>
@@ -60,6 +62,7 @@ const Home = (props) => {
               <TopNav
                 setIsAuth={setIsAuth}
                 isAuth={isAuth}
+                email={email}
               />
             </div>
             <div className='meals-n-workout-wrapper'>
@@ -167,10 +170,9 @@ const mapStateToProps = (state) => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps, {
-  addMeal,
   showAllMeals,
   editMeal,
-  // addMeal,
+  addMeal,
   deleteMeal,
   addFood,
   editFood,

@@ -44,7 +44,7 @@ export default function FoodCard(props) {
 
             <td className='del-btn'><button
                 className={showEdit ? 'del-btn-focus' : null}
-                onClick={() => props.deleteFood(props.mealId, props.item.id)}><DeleteIcon></DeleteIcon></button></td>
+                onClick={() => props.deleteFood(props.userId, props.mealId, props.item.id)}><DeleteIcon></DeleteIcon></button></td>
         </tr>
     )
 }

@@ -16,16 +16,18 @@ export const TopNav = (props) => {
 
   return (
     <div>
-      {/* {props.newState.isAuth ? */}
       {props.isAuth ?
-        <Button
-          className="logout-btn"
-          onClick={() => logOut()}
-          variant="filled"
-          color="primary"
-          endIcon={<ExitToAppIcon />}
-        >LOGOUT
+        <>
+          <p>{props.email}</p>
+          <Button
+            className="logout-btn"
+            onClick={() => logOut()}
+            variant="filled"
+            color="primary"
+            endIcon={<ExitToAppIcon />}
+          >LOGOUT
 </Button>
+        </>
         : <Redirect to="/register" />}
     </div>
   );
