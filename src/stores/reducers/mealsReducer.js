@@ -24,6 +24,7 @@ const mealsReducer = (state = initialState, action) => {
             }
 
         case 'DELETE_ALL_MEALS':
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: [] })
             return {
                 ...state,
                 meals: []

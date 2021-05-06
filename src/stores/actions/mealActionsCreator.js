@@ -28,14 +28,14 @@ export const addFood = (userId, targetId, food, cal) => dispatch => {
     })
 }
 
-export const addMeal = ( mealType) => async dispatch => {
+export const addMeal = (mealType) => async dispatch => {
     dispatch({
         type: "ADD_MEAL",
         mealType: mealType
     });
 }
 
- export const deleteFood = (userId, targetMealId, targetFoodId) => dispatch => {
+export const deleteFood = (userId, targetMealId, targetFoodId) => dispatch => {
     dispatch({
         type: "DELETE_FOOD",
         userId: userId,
@@ -106,10 +106,10 @@ export const addWorkout = (userId, name, cal) => dispatch => {
 
 
 // =========================== MEALS & WORKOUT FUNCTION FOR SIDE BAR ===========================
-export const deleteAllWorkouts = () => dispatch => {
-    dispatch({ type: 'DELETE_ALL_WORKOUTS' })
+export const deleteAllWorkouts = (userId) => dispatch => {
+    dispatch({ type: 'DELETE_ALL_WORKOUTS', userId: userId })
 }
 
-export const deleteAllMeals = () => dispatch => {
-    dispatch({ type: 'DELETE_ALL_MEALS' })
+export const deleteAllMeals = (userId) => dispatch => {
+    dispatch({ type: 'DELETE_ALL_MEALS', userId: userId })
 }

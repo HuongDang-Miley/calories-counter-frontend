@@ -24,7 +24,10 @@ import {
   deleteFood,
   addWorkout,
   editWorkout,
-  deleteWorkout
+  deleteWorkout,
+  deleteAllMeals,
+  deleteAllWorkouts,
+
 } from '../../stores/actions/mealActionsCreator'
 
 const Home = (props) => {
@@ -51,6 +54,7 @@ const Home = (props) => {
         <div className="App">
           <div className='sidebar-wrapper' >
             <Sidebar
+              userId={userId}
               workouts={props.workouts}
               meals={props.meals}
               deleteAllMeals={props.deleteAllMeals}
@@ -110,66 +114,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-// showAllData: (meals) => {
-//   dispatch({
-//     type: "SHOW_ALL_MEALS",
-//     meals: meals
-//   })
-// },
-// addFood: (targetId, food, cal) =>
-//   dispatch({
-//     type: "ADD_FOOD",
-//     targetId: targetId,
-//     newFood: { id: uuidv4(), name: food, cal: cal },
-//   }),
-// deleteFood: (targetMealId, targetFoodId) =>
-//   dispatch({
-//     type: "DELETE_FOOD",
-//     targetMealId: targetMealId,
-//     targetFoodId: targetFoodId,
-//   }),
-// deleteMeal: (targetMealId) =>
-//   dispatch({ type: "DELETE_MEAL", targetMealId: targetMealId }),
-// editFood: (targetMealId, targetFoodId, name, cal) =>
-//   dispatch({
-//     type: "EDIT_FOOD",
-//     targetMealId: targetMealId,
-//     targetFoodId: targetFoodId,
-//     name: name,
-//     cal: cal,
-//   }),
-// editMeal: (targetMealId, name) =>
-//   dispatch({ type: "EDIT_MEAL", targetMealId: targetMealId, name: name }),
-// addMeal: async (mealType) => {
-//   dispatch({ type: "ADD_MEAL", mealType: mealType });
-// },
 
-// showAllData: () => async dispatch => {
-//   let response = await axios.get('http://jsonplaceholder.typicode.com/posts7')
-//   // let response = await axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7')
-//   console.log(response.data)
-//   dispatch({ type: "SHOW_ALL_MEALS", meals: response.data })
-// },
-
-// // -------workout
-// deleteWorkout: (id) => dispatch({ type: "DELETE_WORKOUT", targetId: id }),
-// toggleField: () => dispatch({ type: "TOGGLE_FIELD" }),
-// editWorkout: (targetId, name, cal) =>
-//   dispatch({ type: "EDIT_WORKOUT", targetId: targetId, newName: name, newCal: cal }),
-// addWorkout: (name, cal) =>
-//   dispatch({ type: "ADD_WORKOUT", newName: name, newCal: cal }),
-
-// // -------workout
-// // ------sidebar
-// deleteAllMeals: () => (dispatch({ type: 'DELETE_ALL_MEALS' })),
-// deleteAllWorkouts: () => (dispatch({ type: 'DELETE_ALL_WORKOUTS' }))
-// ------sidebar
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps, {
   showAllData,
   editMeal,
@@ -180,5 +125,7 @@ export default connect(mapStateToProps, {
   deleteFood,
   addWorkout,
   editWorkout,
-  deleteWorkout
+  deleteWorkout,
+  deleteAllMeals,
+  deleteAllWorkouts,
 })(Home);
