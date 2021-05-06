@@ -106,9 +106,14 @@ const mealsReducer = (state = initialState, action) => {
             console.log(action)
             let updateMeal = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
-                    return { ...meal, mealType: action.name }
+                    return { ...meal, mealType: action.newname }
                 } else { return meal }
             })
+
+            console.log('updateMeal', updateMeal)
+
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: updateMeal })
+
             return {
                 ...state,
                 meals: updateMeal

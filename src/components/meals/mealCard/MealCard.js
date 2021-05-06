@@ -26,11 +26,12 @@ export default function MealCard(props) {
         }
     }
 
-    const handleEditMeal = (mealId, editName) => {
-        if (!editName) {
+    const handleEditMeal = (mealId) => {
+        console.log('editName', selectMeal)
+        if (!selectMeal) {
             alert('You Haven Not Select A Meal Type')
         } else {
-            props.editMeal(mealId, editName)
+            props.editMeal(props.userId, mealId, selectMeal)
         }
     }
 
@@ -42,6 +43,7 @@ export default function MealCard(props) {
                     <tr>
                         <th className='meal-types'>{showEdit //=> show selector when hit edit button
                             ? <select className='select-button' onChange={(event) => setSelectMeal(event.target.value)}>
+                            {/* ? <select className='select-button' onChange={(event) => console.log(event.target.value)}> */}
                                 <option value='none' defaultValue hidden>SELECT MEAL TYPE</option>
                                 <option value="BREAKFAST">BREAKFAST</option>
                                 <option value="BRUNCH">BRUNCH</option>
@@ -60,7 +62,7 @@ export default function MealCard(props) {
                             ? <button //=> Save Btn
                                 className='add-n-save-btn'
                                 onClick={() => {
-                                    handleEditMeal(props.item.id, selectMeal)
+                                    handleEditMeal(props.item.id)
                                     setShowEdit(!showEdit)
                                 }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
                             : <button onClick={() => setShowEdit(!showEdit)}><CreateRoundedIcon></CreateRoundedIcon></button> //=> Edit Btn

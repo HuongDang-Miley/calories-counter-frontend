@@ -63,14 +63,6 @@ export default function Workout(props) {
                         <td></td>
                     </tr>
                 </tfoot>
-                {/* <tfoot>
-                    <tr>
-                        <td className='food-cell last-cell'>Total Calories</td>
-                        <td className='call-cell last-cell'>0</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tfoot> */}
             </table>
 
         </div>

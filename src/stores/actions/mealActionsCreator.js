@@ -64,11 +64,12 @@ export const editFood = (userId, targetMealId, targetFoodId, name, cal) => dispa
     })
 }
 
-export const editMeal = (targetMealId, name) => dispatch => {
+export const editMeal = (userId, targetMealId, newname) => dispatch => {
     dispatch({
         type: "EDIT_MEAL",
-        targetMealid: targetMealId,
-        name: name
+        userId: userId,
+        targetMealId: targetMealId,
+        newname: newname
     })
 }
 
