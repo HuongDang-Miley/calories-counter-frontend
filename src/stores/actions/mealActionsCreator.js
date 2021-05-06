@@ -47,17 +47,20 @@ export const addMeal = ( mealType) => async dispatch => {
 
 
 export const deleteMeal = (userId, targetMealId) => async dispatch => {
-    await axios.delete(`http://localhost:4000/api/meals/delete-meal`, { params: { userId: userId, targetMealId: targetMealId } })
+    console.log('targetMealId',targetMealId)
+    // await axios.delete(`http://localhost:4000/api/meals/delete-meal`, { params: { userId: userId, targetMealId: targetMealId } })
     await dispatch({
         type: "DELETE_MEAL",
-        targetMealId: targetMealId
+        userId: userId,
+        targetMealId: targetMealId,
     })
 }
 
 
-export const editFood = (targetMealId, targetFoodId, name, cal) => dispatch => {
+export const editFood = (userId, targetMealId, targetFoodId, name, cal) => dispatch => {
     dispatch({
         type: "EDIT_FOOD",
+        userId: userId,
         targetMealId: targetMealId,
         targetFoodId: targetFoodId,
         name: name,

@@ -33,7 +33,7 @@ export default function FoodCard(props) {
                 ? <button //=> save button
                     className='add-n-save-btn'
                     onClick={() => {
-                        props.editFood(props.mealId, props.item.id, nameRef.current.value, calRef.current.value)
+                        props.editFood(props.userId, props.mealId, props.item.id, nameRef.current.value, calRef.current.value)
                         setShowEdit(!showEdit)
                     }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
 

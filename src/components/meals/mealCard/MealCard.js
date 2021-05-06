@@ -61,7 +61,6 @@ export default function MealCard(props) {
                                 className='add-n-save-btn'
                                 onClick={() => {
                                     handleEditMeal(props.item.id, selectMeal)
-                                    // handleEditMeal(props.item.id, foodRef.current.value)
                                     setShowEdit(!showEdit)
                                 }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
                             : <button onClick={() => setShowEdit(!showEdit)}><CreateRoundedIcon></CreateRoundedIcon></button> //=> Edit Btn
@@ -69,8 +68,7 @@ export default function MealCard(props) {
                         </th>
 
                         {/* =========== Delete Button =========== */}
-                        {/* <th className='del-btn'><button onClick={() =>console.log(props.item.id)}><DeleteIcon></DeleteIcon></button></th> */}
-                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.userId, props.item._id)}><DeleteIcon></DeleteIcon></button></th>
+                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.userId, props.item.id)}><DeleteIcon></DeleteIcon></button></th>
                     </tr>
 
                 </thead>
