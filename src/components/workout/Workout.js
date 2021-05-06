@@ -12,7 +12,7 @@ function Workout(props) {
 
     const handleAddWorkout = () => {
         if (nameRef.current.value === '' || calRef.current.value === '') {
-            alert('field cannot be empty')
+            alert('Field Cannot Be Empty, Calories Must Be A Number')
             return
         } 
         props.addWorkout(props.userId, nameRef.current.value, calRef.current.value)

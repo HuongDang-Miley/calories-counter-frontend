@@ -1,8 +1,6 @@
-
-
-
 import { v4 as uuidv4 } from "uuid";
 import axios from 'axios'
+import * as actionTypes from "../actions/actionTypes";
 
 
 const initialState = {
@@ -11,22 +9,27 @@ const initialState = {
 
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SHOW_ALL_DATA":
 
+        case actionTypes.SHOW_ALL_DATA:
             return {
                 ...state,
                 meals: action.meals,
             }
 
-        case 'DELETE_ALL_MEALS':
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        
+        case actionTypes.DELETE_ALL_MEALS:
             axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: [] })
             return {
                 ...state,
                 meals: []
             }
 
-        case 'EDIT_FOOD':
-            console.log(action)
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        case actionTypes.EDIT_FOOD:
+
             let updateFoodInMeals = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     let updateFood = meal.food.map(food => {
@@ -51,10 +54,10 @@ const mealsReducer = (state = initialState, action) => {
                 meals: updateFoodInMeals
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            ◊
+        case actionTypes.DELETE_FOOD:
 
-
-        case 'DELETE_FOOD':
-            console.log(action)
             let deleteFoodInMeals = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     let deleteFood = meal.food.filter(food => food.id !== action.targetFoodId)
@@ -74,9 +77,10 @@ const mealsReducer = (state = initialState, action) => {
                 meals: deleteFoodInMeals
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        case actionTypes.ADD_FOOD:
 
-        case 'ADD_FOOD':
-            console.log(action)
             let updateMeals = state.meals.map(meal => {
                 if (meal.id === action.targetId) {
                     return {
@@ -96,10 +100,10 @@ const mealsReducer = (state = initialState, action) => {
             }
 
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        case actionTypes.EDIT_MEAL:
 
-
-        case "EDIT_MEAL":
-            // console.log(action)
             let updateMeal = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     return { ...meal, mealType: action.newname }
@@ -114,8 +118,9 @@ const mealsReducer = (state = initialState, action) => {
             }
 
 
-        case 'DELETE_MEAL':
-            console.log('action', action)
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        case actionTypes.DELETE_MEAL:
 
             let deleteMeal = state.meals.filter(meal => meal.id !== action.targetMealId)
 
@@ -126,8 +131,10 @@ const mealsReducer = (state = initialState, action) => {
                 meals: deleteMeal
             }
 
-        case 'ADD_MEAL':
-            console.log(action)
+        //=====================================================================================================================            
+        //=====================================================================================================================            
+        case actionTypes.ADD_MEAL:
+
             return {
                 ...state,
                 meals: [
@@ -140,12 +147,8 @@ const mealsReducer = (state = initialState, action) => {
                 ]
             }
 
-        default:
-            return state
-        // {
-        //     ...state,
-        //     meals: axios.get('http://localhost:4000/api/data/view-meals/606d0251a11618c9eefcb3c7').then(result => state.meals = result.data)
-        // }
+        default: return state
+
     }
 }
 

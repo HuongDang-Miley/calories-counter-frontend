@@ -27,7 +27,7 @@ function MealCard(props) {
 
     const handleAddFood = (food, cal) => {
         if (!food || !cal) {
-            alert('Field Cannot Be Emtpy')
+            alert('Field Cannot Be Emtpy, Calories Must Be A Number')
         } else {
             props.addFood(props.userId, props.item.id, food, cal)
             foodRef.current.value = ''

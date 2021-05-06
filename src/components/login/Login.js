@@ -5,7 +5,6 @@ import { Route, Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-// import * as actionTypes from "../actions/actionTypes";
 
 import { Box } from "@material-ui/core";
 import "./login.css";

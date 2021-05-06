@@ -1,26 +1,27 @@
 import axios from "axios";
-// import * as actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import { v4 as uuidv4 } from "uuid";
 
 
-
-// =========================== MEALS FUNCTION (for mealReducer)===========================
+/******************
+ * MEALS FUNCTION *
+ ******************/
 
 export const showAllData = (userId) => async dispatch => {
-    // console.log('userId', userId)
+    
     let response = await axios.get(`http://localhost:4000/api/data/show-all-data/${userId}`)
-    console.log('response.data.meals', response.data)
+    
     dispatch({
-        type: "SHOW_ALL_DATA",
+        type: actionTypes.SHOW_ALL_DATA,
         meals: response.data.meals,
         workouts: response.data.workouts,
     })
 }
 
 export const addFood = (userId, targetId, food, cal) => dispatch => {
-    // console.log('userId:', userId, 'targetId:', targetId, 'food:', food, 'cal:', cal)
+
     dispatch({
-        type: "ADD_FOOD",
+        type: actionTypes.ADD_FOOD,
         targetId: targetId,
         userId: userId,
         newFood: { id: uuidv4(), name: food, cal: cal },
@@ -29,14 +30,14 @@ export const addFood = (userId, targetId, food, cal) => dispatch => {
 
 export const addMeal = (mealType) => async dispatch => {
     dispatch({
-        type: "ADD_MEAL",
+        type: actionTypes.ADD_MEAL,
         mealType: mealType
     });
 }
 
 export const deleteFood = (userId, targetMealId, targetFoodId) => dispatch => {
     dispatch({
-        type: "DELETE_FOOD",
+        type: actionTypes.DELETE_FOOD,
         userId: userId,
         targetMealId: targetMealId,
         targetFoodId: targetFoodId,
@@ -46,7 +47,7 @@ export const deleteFood = (userId, targetMealId, targetFoodId) => dispatch => {
 
 export const deleteMeal = (userId, targetMealId) => async dispatch => {
     await dispatch({
-        type: "DELETE_MEAL",
+        type: actionTypes.DELETE_MEAL,
         userId: userId,
         targetMealId: targetMealId,
     })
@@ -55,7 +56,7 @@ export const deleteMeal = (userId, targetMealId) => async dispatch => {
 
 export const editFood = (userId, targetMealId, targetFoodId, name, cal) => dispatch => {
     dispatch({
-        type: "EDIT_FOOD",
+        type: actionTypes.EDIT_FOOD,
         userId: userId,
         targetMealId: targetMealId,
         targetFoodId: targetFoodId,
@@ -66,7 +67,7 @@ export const editFood = (userId, targetMealId, targetFoodId, name, cal) => dispa
 
 export const editMeal = (userId, targetMealId, newname) => dispatch => {
     dispatch({
-        type: "EDIT_MEAL",
+        type: actionTypes.EDIT_MEAL,
         userId: userId,
         targetMealId: targetMealId,
         newname: newname
@@ -74,19 +75,22 @@ export const editMeal = (userId, targetMealId, newname) => dispatch => {
 }
 
 
-// =========================== WORKOUT FUNCTION (for workoutReducer) ===========================
+
+/********************
+ * WORKOUT FUNCTION *
+ ********************/
+
 export const deleteWorkout = (userId, id) => dispatch => {
     dispatch({
-        type: "DELETE_WORKOUT",
+        type: actionTypes.DELETE_WORKOUT,
         targetId: id,
         userId: userId,
     })
 }
 
-
 export const editWorkout = (userId, targetId, name, cal) => dispatch => {
     dispatch({
-        type: "EDIT_WORKOUT",
+        type: actionTypes.EDIT_WORKOUT,
         userId: userId,
         targetId: targetId,
         newName: name,
@@ -95,9 +99,9 @@ export const editWorkout = (userId, targetId, name, cal) => dispatch => {
 }
 
 export const addWorkout = (userId, name, cal) => dispatch => {
-    console.log(userId, userId)
+    
     dispatch({
-        type: "ADD_WORKOUT",
+        type: actionTypes.ADD_WORKOUT,
         userId: userId,
         newName: name,
         newCal: cal
@@ -105,11 +109,14 @@ export const addWorkout = (userId, name, cal) => dispatch => {
 }
 
 
-// =========================== MEALS & WORKOUT FUNCTION FOR SIDE BAR ===========================
+/*****************************************
+ * MEALS & WORKOUT FUNCTION FOR SIDE BAR *
+ *****************************************/
+
 export const deleteAllWorkouts = (userId) => dispatch => {
-    dispatch({ type: 'DELETE_ALL_WORKOUTS', userId: userId })
+    dispatch({ type: actionTypes.DELETE_ALL_WORKOUTS, userId: userId })
 }
 
 export const deleteAllMeals = (userId) => dispatch => {
-    dispatch({ type: 'DELETE_ALL_MEALS', userId: userId })
+    dispatch({ type: actionTypes.DELETE_ALL_MEALS, userId: userId })
 }

@@ -11,6 +11,21 @@ export const AUTH_USER_SIGN_IN_FAILURE = 'AUTH_USER_SIGN_IN_FAILURE';
 
 export const AUTH_USER_STAY_UP = 'AUTH_USER_STAY_UP';
 
+export const SHOW_ALL_DATA = "SHOW_ALL_DATA"
+export const DELETE_ALL_WORKOUTS = "DELETE_ALL_WORKOUTS"
+export const DELETE_ALL_MEALS = "DELETE_ALL_MEALS"
+
+
 export const ADD_MEAL = "ADD_MEAL"
+export const DELETE_MEAL = "DELETE_MEAL"
+export const EDIT_MEAL = "EDIT_MEAL"
+
+export const ADD_FOOD = "ADD_FOOD"
+export const DELETE_FOOD = "DELETE_FOOD"
+export const EDIT_FOOD = "EDIT_FOOD"
+
+export const ADD_WORKOUT = "ADD_WORKOUT"
+export const DELETE_WORKOUT = "DELETE_WORKOUT"
+export const EDIT_WORKOUT = "EDIT_WORKOUT"
 
 
