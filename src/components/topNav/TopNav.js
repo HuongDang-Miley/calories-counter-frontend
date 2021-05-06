@@ -18,7 +18,7 @@ export const TopNav = (props) => {
     <div>
       {props.isAuth ?
         <>
-          <p>{props.email}</p>
+          <div style={{display: 'inline-block', marginRight: 24}}>{props.email}</div>
           <Button
             className="logout-btn"
             onClick={() => logOut()}
