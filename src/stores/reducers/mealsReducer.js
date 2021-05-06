@@ -2,50 +2,31 @@
 
 
 import { v4 as uuidv4 } from "uuid";
-import * as actionTypes from '../../stores/actions/actionTypes';
 import axios from 'axios'
-import fetch from 'fetch'
 
 
 const initialState = {
-    meals: [
-        {
-            id: uuidv4(),
-            mealType: 'Breakfast',
-            food: [
-                { id: uuidv4(), name: 'Egg', cal: 70 },
-                { id: uuidv4(), name: 'Latte', cal: 50 },
-                { id: uuidv4(), name: 'Bread', cal: 100 },
-            ]
-        },
-        {
-            id: uuidv4(),
-            mealType: 'Snack',
-            food: [
-                { id: uuidv4(), name: 'Protein Bar', cal: 100 },
-                { id: uuidv4(), name: 'Diet Coke', cal: 10 },
-            ]
-        },
-    ]
+    meals: [],
 }
-
 
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SHOW_ALL_MEALS":
-            console.log(action.meals)
+        case "SHOW_ALL_DATA":
+
             return {
                 ...state,
-                meals: action.meals
+                meals: action.meals,
             }
 
         case 'DELETE_ALL_MEALS':
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: [] })
             return {
                 ...state,
                 meals: []
             }
 
         case 'EDIT_FOOD':
+            console.log(action)
             let updateFoodInMeals = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     let updateFood = meal.food.map(food => {
@@ -63,6 +44,8 @@ const mealsReducer = (state = initialState, action) => {
                     }
                 } else { return meal }
             })
+
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: updateFoodInMeals })
             return {
                 ...state,
                 meals: updateFoodInMeals
@@ -71,6 +54,7 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'DELETE_FOOD':
+            console.log(action)
             let deleteFoodInMeals = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     let deleteFood = meal.food.filter(food => food.id !== action.targetFoodId)
@@ -83,6 +67,8 @@ const mealsReducer = (state = initialState, action) => {
                     return meal
                 }
             })
+
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: deleteFoodInMeals })
             return {
                 ...state,
                 meals: deleteFoodInMeals
@@ -90,7 +76,8 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'ADD_FOOD':
-            let addFoodInMeal = state.meals.map(meal => {
+            console.log(action)
+            let updateMeals = state.meals.map(meal => {
                 if (meal.id === action.targetId) {
                     return {
                         ...meal,
@@ -100,19 +87,27 @@ const mealsReducer = (state = initialState, action) => {
                     return meal
                 }
             })
+            console.log('addFoodInMeal', updateMeals)
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: updateMeals })
+
             return {
                 ...state,
-                meals: addFoodInMeal
+                meals: updateMeals
             }
 
 
+
+
         case "EDIT_MEAL":
-            console.log(action)
+            // console.log(action)
             let updateMeal = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
-                    return { ...meal, mealType: action.name }
+                    return { ...meal, mealType: action.newname }
                 } else { return meal }
             })
+
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: updateMeal })
+
             return {
                 ...state,
                 meals: updateMeal
@@ -120,13 +115,19 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'DELETE_MEAL':
+            console.log('action', action)
+
             let deleteMeal = state.meals.filter(meal => meal.id !== action.targetMealId)
+
+            axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: deleteMeal })
+
             return {
                 ...state,
                 meals: deleteMeal
             }
 
         case 'ADD_MEAL':
+            console.log(action)
             return {
                 ...state,
                 meals: [
@@ -143,7 +144,7 @@ const mealsReducer = (state = initialState, action) => {
             return state
         // {
         //     ...state,
-        //     meals: axios.get('http://localhost:4000/api/meals/view-meals/606d0251a11618c9eefcb3c7').then(result => state.meals = result.data)
+        //     meals: axios.get('http://localhost:4000/api/data/view-meals/606d0251a11618c9eefcb3c7').then(result => state.meals = result.data)
         // }
     }
 }

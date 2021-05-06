@@ -8,6 +8,8 @@ import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 export default function MealCard(props) {
+
+    
     const [showEdit, setShowEdit] = useState(false)
     const [selectMeal, setSelectMeal] = useState(null)
     let foodRef = useRef()
@@ -18,17 +20,18 @@ export default function MealCard(props) {
         if (!food || !cal) {
             alert('Field Cannot Be Emtpy')
         } else {
-            props.addFood(props.item.id, food, cal)
+            props.addFood(props.userId, props.item.id, food, cal)
             foodRef.current.value = ''
             calRef.current.value = ''
         }
     }
 
-    const handleEditMeal = (mealId, editName) => {
-        if (!editName) {
+    const handleEditMeal = (mealId) => {
+        console.log('editName', selectMeal)
+        if (!selectMeal) {
             alert('You Haven Not Select A Meal Type')
         } else {
-            props.editMeal(mealId, editName)
+            props.editMeal(props.userId, mealId, selectMeal)
         }
     }
 
@@ -40,6 +43,7 @@ export default function MealCard(props) {
                     <tr>
                         <th className='meal-types'>{showEdit //=> show selector when hit edit button
                             ? <select className='select-button' onChange={(event) => setSelectMeal(event.target.value)}>
+                            {/* ? <select className='select-button' onChange={(event) => console.log(event.target.value)}> */}
                                 <option value='none' defaultValue hidden>SELECT MEAL TYPE</option>
                                 <option value="BREAKFAST">BREAKFAST</option>
                                 <option value="BRUNCH">BRUNCH</option>
@@ -58,8 +62,7 @@ export default function MealCard(props) {
                             ? <button //=> Save Btn
                                 className='add-n-save-btn'
                                 onClick={() => {
-                                    handleEditMeal(props.item.id, selectMeal)
-                                    // handleEditMeal(props.item.id, foodRef.current.value)
+                                    handleEditMeal(props.item.id)
                                     setShowEdit(!showEdit)
                                 }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
                             : <button onClick={() => setShowEdit(!showEdit)}><CreateRoundedIcon></CreateRoundedIcon></button> //=> Edit Btn
@@ -67,7 +70,7 @@ export default function MealCard(props) {
                         </th>
 
                         {/* =========== Delete Button =========== */}
-                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.item.id)}><DeleteIcon></DeleteIcon></button></th>
+                        <th className='del-btn'><button onClick={() => props.deleteMeal(props.userId, props.item.id)}><DeleteIcon></DeleteIcon></button></th>
                     </tr>
 
                 </thead>
@@ -76,6 +79,7 @@ export default function MealCard(props) {
                 <tbody>
                     {props.item.food.map(item => (
                         <FoodCard
+                            userId={props.userId}
                             key={item.id}
                             mealId={props.item.id}
                             item={item}

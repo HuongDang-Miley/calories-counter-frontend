@@ -1,12 +1,9 @@
-import React, { createRef, useRef } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useRef } from "react";
 import TextField from "@material-ui/core/TextField";
-import { FormHelperText, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { connect } from "react-redux";
 import "./register.css";
-import Home from "../home/Home";
-import Login from "../login/Login";
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { Route, Link, Redirect } from "react-router-dom";
 import { register } from '../../stores/actions/authActionCreator'
 import Button from "@material-ui/core/Button";
 
@@ -17,16 +14,11 @@ export const Register = (props) => {
   const refUsername = useRef();
   const refEmail = useRef();
   const refPassword = useRef();
-  //   console.log(loggedIn);
+
 
   return (
     <>
       {props.newState.isAuth ? (
-        // <div>
-        //   <Sidebar />
-        //   <Meals />
-        //   <Workout />
-        // </div>
         <Route>
           <Redirect to="/" />
         </Route>

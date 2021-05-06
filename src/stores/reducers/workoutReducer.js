@@ -1,65 +1,65 @@
 import { v4 as uuidv4 } from "uuid";
+import axios from 'axios'
+
 const initialState = {
-    workouts: [
-        { id: uuidv4(), name: "Jumping Jack", cal: 100 },
-        { id: uuidv4(), name: "Squat", cal: 30 },
-        { id: uuidv4(), name: "chilling", cal: 30 },
-        { id: uuidv4(), name: "sitting", cal: 30 },
-        { id: uuidv4(), name: "dancing", cal: 30 },
-        { id: uuidv4(), name: "swiming", cal: 30 },
-        { id: uuidv4(), name: "idk", cal: 30 },
-    ]
+    workouts: []
 }
 
 
 const workoutReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case "SHOW_ALL_DATA":
+            console.log("SHOW_ALL_DATA action", action)
+            return {
+                ...state,
+                workouts: action.workouts,
+            }
+
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case 'DELETE_ALL_WORKOUTS':
+            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: [] })
             return {
                 ...state,
                 workouts: []
             }
 
-        case "TOGGLE_FIELD":
-            //i want this to toggle the add workout to add a new input field
-            const text = (state.showAdd ? "Show" : "Hide")
-            return {
-                ...state,
-                showAdd: !state.showAdd,
-                buttonText: text
-
-            }
-        // adding new workout
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case "ADD_WORKOUT":
             const newWorkout = {
                 name: action.newName,
                 cal: action.newCal,
                 id: uuidv4()
             }
-            console.log(newWorkout);
 
+            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: [...state.workouts, newWorkout] })
             return {
                 ...state,
                 workouts: [...state.workouts, newWorkout]
-
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
 
         case "DELETE_WORKOUT":
+            // console.log(action)
             const newArr = state.workouts.filter((currEl) => {
                 return currEl.id !== action.targetId;
+            });
 
-            }
-
-            );
+            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: newArr })
 
             return {
                 ...state,
                 workouts: newArr
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case "EDIT_WORKOUT":
-            console.log(action)
+            // console.log(action)
             let updateArr = state.workouts.map((item) => {
                 if (item.id === action.targetId) {
                     return {
@@ -71,17 +71,15 @@ const workoutReducer = (state = initialState, action) => {
                     return item
                 }
             })
+
+            axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: updateArr })
             return {
                 ...state,
                 workouts: updateArr
-
             }
 
 
-
-
         default:
-
             return state
     }
 }

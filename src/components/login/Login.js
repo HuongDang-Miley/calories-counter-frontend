@@ -1,19 +1,17 @@
-import React, { createRef, useRef, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useRef } from "react";
+
 import TextField from "@material-ui/core/TextField";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 // import * as actionTypes from "../actions/actionTypes";
 
-import { FormHelperText, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import "./login.css";
 import { connect } from "react-redux";
-import { login, stayUp } from "../../stores/actions/authActionCreator";
-import Meals from "../meals/Meals";
-import { Workout } from "../workout/Workout";
-import { Sidebar } from "../sidebar/Sidebar";
+import { login } from "../../stores/actions/authActionCreator";
+
 
 
 
@@ -24,19 +22,6 @@ const Login = (props) => {
   const refEmail = useRef();
   const refPassword = useRef();
 
-  // const login = (email, password) => {
-  //   props.login(email, password)
-  //   props.history.push('/home')
-  // }
-
-  // useEffect(() => {
-  //   if(props.newState.isAuth){
-  //     props.history.push('/')
-
-  //   }
-  //   // let getToken = localStorage.getItem("jwtToken");
-  //   // props.stayUp(getToken);
-  // }, []);
 
   return (
     <>
@@ -83,4 +68,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { login, stayUp })(Login);
+export default connect(mapStateToProps, { login })(Login);

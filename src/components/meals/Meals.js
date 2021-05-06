@@ -1,16 +1,23 @@
-import React, { connect, useState } from 'react'
+import React, { connect } from 'react'
 
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
-
+// import {
+//     addMeal,
+//     editMeal,
+//     deleteMeal,
+//     addFood,
+//     editFood,
+//     deleteFood,
+// } from '../../stores/actions/mealActionsCreator'
 
 
 export default function Meals(props) {
-    
+
     return (
         <div>
             <div className='selector-wrapper' >
-                <select onChange={(event) => props.handleSelectMeal(event.target.value)}>
+                <select onChange={(event) => props.addMeal(event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
                     <option value="BREAKFAST">Breakfast</option>
                     <option value="BRUNCH">Brunch</option>
@@ -24,6 +31,7 @@ export default function Meals(props) {
                 <MealCard
                     key={item.id}
                     item={item}
+                    userId={props.userId}
                     addFood={props.addFood}
                     deleteFood={props.deleteFood}
                     deleteMeal={props.deleteMeal}
@@ -37,11 +45,20 @@ export default function Meals(props) {
 
 // const mapStateToProps = (state) => {
 //     return {
-//       state: state,
-//       meals: state.meals_Reducer
+//         meals: state.meals_Reducer,
+//         workouts: state.workout_Reducer,
+//     };
+// };
 
-//     }
-//   }
+
+// export default connect(mapStateToProps, {
+//     editMeal,
+//     addMeal,
+//     deleteMeal,
+//     addFood,
+//     editFood,
+//     deleteFood,
+// })(Meals);
 
 
-//   export default connect(mapStateToProps )(Meals);
+

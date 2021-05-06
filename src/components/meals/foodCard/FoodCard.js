@@ -2,20 +2,13 @@ import React, { useRef, useState } from 'react'
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+
 
 export default function FoodCard(props) {
     const [showEdit, setShowEdit] = useState(false)
     let nameRef = useRef()
     let calRef = useRef()
 
-    // const handleEditFood = (mealId, itemId, editName, editCal) => {
-    //     if (!editName || !editCal) {
-    //         alert('Field Cannot Be Empty')
-    //     } else {
-    //         props.editFood(mealId, itemId, editName, editCal)
-    //     }
-    // }
 
     return (
         <tr>
@@ -33,7 +26,7 @@ export default function FoodCard(props) {
                 ? <button //=> save button
                     className='add-n-save-btn'
                     onClick={() => {
-                        props.editFood(props.mealId, props.item.id, nameRef.current.value, calRef.current.value)
+                        props.editFood(props.userId, props.mealId, props.item.id, nameRef.current.value, calRef.current.value)
                         setShowEdit(!showEdit)
                     }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
 
@@ -44,7 +37,7 @@ export default function FoodCard(props) {
 
             <td className='del-btn'><button
                 className={showEdit ? 'del-btn-focus' : null}
-                onClick={() => props.deleteFood(props.mealId, props.item.id)}><DeleteIcon></DeleteIcon></button></td>
+                onClick={() => props.deleteFood(props.userId, props.mealId, props.item.id)}><DeleteIcon></DeleteIcon></button></td>
         </tr>
     )
 }

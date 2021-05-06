@@ -1,7 +1,5 @@
-import { useState, createRef } from "react";
-import { v4 as uuidv4 } from "uuid";
+
 import * as actionTypes from "../actions/actionTypes";
-import axios from "axios";
 import jwtDecode from "jwt-decode";
 const initialState = {
   isAuth: false,
@@ -12,7 +10,7 @@ const initialState = {
 };
 
 const loginReducer = (state = initialState, action) => {
-  // console.log(action);
+  
 
   switch (action.type) {
     case actionTypes.AUTH_USER_REGISTER_SUCCESSFUL: //case----------------------register

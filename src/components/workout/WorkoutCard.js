@@ -2,10 +2,15 @@ import React, { useRef, useState } from 'react'
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import { connect } from "react-redux";
+import {
+    showAllData,
+    addWorkout,
+    editWorkout,
+    deleteWorkout,
+} from '../../stores/actions/mealActionsCreator'
 
-
-export default function WorkoutCard(props) {
-
+function WorkoutCard(props) {
     const [showEdit, setShowEdit] = useState(false)
     let nameRef = useRef()
     let calRef = useRef()
@@ -28,7 +33,7 @@ export default function WorkoutCard(props) {
                 ? <button
                     className='add-n-save-btn'
                     onClick={() => {
-                        props.editWorkout(props.workout.id, nameRef.current.value, calRef.current.value)
+                        props.editWorkout(props.userId, props.workout.id, nameRef.current.value, calRef.current.value)
                         setShowEdit(!showEdit)
                     }}><CheckCircleRoundedIcon></CheckCircleRoundedIcon></button>
                 //======================================= => edit button
@@ -39,8 +44,19 @@ export default function WorkoutCard(props) {
             {/* ======================================= Delete Button ======================================= */}
             <td className='del-btn'><button
                 className={showEdit ? 'del-btn-focus' : null}
-                onClick={() => props.deleteWorkout(props.workout.id)}><DeleteIcon></DeleteIcon></button>
+                onClick={() => props.deleteWorkout(props.userId, props.workout.id)}><DeleteIcon></DeleteIcon></button>
             </td>
         </>
     )
 }
+
+const mapStateToProps = (state) => { return state}
+
+export default connect(mapStateToProps, {
+    showAllData,
+    addWorkout,
+    editWorkout,
+    deleteWorkout,
+})(WorkoutCard);
+
+

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import "./sidebar.css";
 
 export default function Sidebar(props) {
+  console.log('props in sidebar', props)
   let totalCalIntake = props.meals.meals
     // map through meals array return an array that has child arrays of calories only
     .map((meal) =>
@@ -30,19 +31,18 @@ export default function Sidebar(props) {
   // const [totalCal, setTotalCal] = useState(Number(totalCalIntake) - Number(totalCalBurned))
 
   const deleteAllData = () => {
-    console.log("click");
-    props.deleteAllMeals();
-    props.deleteAllWorkouts();
+    props.deleteAllMeals(props.userId);
+    props.deleteAllWorkouts(props.userId);
   };
 
   return (
     <div>
-      <img className="logo" src="/logo.svg"></img>
+      <img className="logo" src="/logo.svg" alt='logo'/>
       <table className="sidebar-table">
         <thead>
           <tr>
             <th className="sidebar-img-cell">
-              <img className="sidebar-img" src="/total-dark-theme.svg" />
+              <img className="sidebar-img" src="/total-dark-theme.svg"  alt='total'/>
             </th>
             <th className="sidebar-title-cell">Total Cal:</th>
             <th className="sidebar-cal-cell">
@@ -53,7 +53,7 @@ export default function Sidebar(props) {
         <tbody>
           <tr>
             <td className="sidebar-img-cell">
-              <img className="sidebar-img" src="/meal-dark-theme.svg" />
+              <img className="sidebar-img" src="/meal-dark-theme.svg" alt='meal'/>
             </td>
             <td className="sidebar-title-cell">Cal Intake:</td>
             <td className="sidebar-cal-cell">{totalCalIntake}</td>
@@ -62,7 +62,7 @@ export default function Sidebar(props) {
         <tbody>
           <tr>
             <td className="sidebar-img-cell">
-              <img className="sidebar-img" src="/fire-dark-theme.svg" />
+              <img className="sidebar-img" src="/fire-dark-theme.svg" alt='fire' />
             </td>
             <td className="sidebar-title-cell">Cal Burned:</td>
             <td className="sidebar-cal-cell">{totalCalBurned}</td>
@@ -83,3 +83,15 @@ export default function Sidebar(props) {
   );
 }
 
+// export default connect(mapStateToProps, {
+//   showAllData,
+//   editMeal,
+//   addMeal,
+//   deleteMeal,
+//   addFood,
+//   editFood,
+//   deleteFood,
+//   addWorkout,
+//   editWorkout,
+//   deleteWorkout
+// })(Sidebar);
