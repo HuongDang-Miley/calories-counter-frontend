@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { logout } from "../../stores/actions/authActionCreator";
-import { stayUp } from "../../stores/actions/authActionCreator";
 import { Redirect } from "react-router";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
@@ -18,7 +16,7 @@ export const TopNav = (props) => {
     <div>
       {props.isAuth ?
         <>
-          <div style={{display: 'inline-block', marginRight: 24}}>{props.email}</div>
+          <div style={{ display: 'inline-block', marginRight: 24 }}>{props.email}</div>
           <Button
             className="logout-btn"
             onClick={() => logOut()}

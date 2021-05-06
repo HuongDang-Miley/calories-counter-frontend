@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import axios from 'axios'
-// import { Switch } from "@material-ui/core";
-import Login from "../login/Login";
-import { Register } from "../register/Register";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Meals from "../meals/Meals";
 import Workout from "../workout/Workout";
 import Sidebar from "../sidebar/Sidebar";
-import { stayUp } from "../../stores/actions/authActionCreator";
 import { TopNav } from "../topNav/TopNav";
-import { v4 as uuidv4 } from "uuid";
 import jwtDecode from 'jwt-decode';
 import '../../App.css'
 import '../sidebar/sidebar.css'
@@ -107,8 +101,6 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // state: state,
-    isAuth: state.login_Reducer,
     meals: state.meals_Reducer,
     workouts: state.workout_Reducer,
   };

@@ -7,12 +7,18 @@ export default function Workout(props) {
     let nameRef = useRef()
     let calRef = useRef()
 
+    const handleAddWorkout = () => {
+        props.addWorkout(props.userId, nameRef.current.value, calRef.current.value)
+        nameRef.current.value = ''
+        calRef.current.value = ''
+    }
+
     return (
         <div>
             <table className='workout-table'>
                 <thead>
                     <tr>
-                        <th className='meal-types'><img src='/fire-light-theme.svg' />WORKOUT</th>
+                        <th className='meal-types'><img src='/fire-light-theme.svg' alt='fire' />WORKOUT</th>
                         <th className='cal-cell'>CAL BURNED</th>
                         <th></th>
                         <th></th>
@@ -27,7 +33,7 @@ export default function Workout(props) {
                             <input className='cal-input' placeholder='150' type='number' ref={calRef}></input>
                         </td>
                         {/* =========== Add Button =========== */}
-                        <td className="edit-btn"><button className='add-n-save-btn' onClick={() => props.addWorkout(props.userId, nameRef.current.value, calRef.current.value)}><AddCircleRoundedIcon></AddCircleRoundedIcon></button></td>
+                        <td className="edit-btn"><button className='add-n-save-btn' onClick={() => handleAddWorkout()}><AddCircleRoundedIcon></AddCircleRoundedIcon></button></td>
                         <td ></td>
                     </tr>
                     {/* ======================================= Display Workout List List ======================================= */}

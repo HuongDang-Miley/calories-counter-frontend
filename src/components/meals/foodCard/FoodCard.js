@@ -2,20 +2,13 @@ import React, { useRef, useState } from 'react'
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+
 
 export default function FoodCard(props) {
     const [showEdit, setShowEdit] = useState(false)
     let nameRef = useRef()
     let calRef = useRef()
 
-    // const handleEditFood = (mealId, itemId, editName, editCal) => {
-    //     if (!editName || !editCal) {
-    //         alert('Field Cannot Be Empty')
-    //     } else {
-    //         props.editFood(mealId, itemId, editName, editCal)
-    //     }
-    // }
 
     return (
         <tr>

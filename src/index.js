@@ -11,10 +11,6 @@ import mealsReducer from './stores/reducers/mealsReducer'
 import workoutReducer from './stores/reducers/workoutReducer'
 import loginReducer from './stores/reducers/loginReducer'
 
-import { Router } from 'react-router';
-
-
-// const middleware = [thunk];//thunk 2 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

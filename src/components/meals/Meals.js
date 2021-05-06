@@ -1,27 +1,23 @@
-import React, { connect, useState } from 'react'
+import React, { connect } from 'react'
 
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
-import { 
-    addMeal,
-    showAllData,
-    editMeal,
-    deleteMeal,
-    addFood,
-    editFood,
-    deleteFood,
-    addWorkout,
-    editWorkout,
-    deleteWorkout} from '../../stores/actions/mealActionsCreator'
-
+// import {
+//     addMeal,
+//     editMeal,
+//     deleteMeal,
+//     addFood,
+//     editFood,
+//     deleteFood,
+// } from '../../stores/actions/mealActionsCreator'
 
 
 export default function Meals(props) {
-    
+
     return (
         <div>
             <div className='selector-wrapper' >
-                <select onChange={(event) => props.addMeal( event.target.value)}>
+                <select onChange={(event) => props.addMeal(event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
                     <option value="BREAKFAST">Breakfast</option>
                     <option value="BRUNCH">Brunch</option>
@@ -47,6 +43,22 @@ export default function Meals(props) {
     )
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         meals: state.meals_Reducer,
+//         workouts: state.workout_Reducer,
+//     };
+// };
 
-  
+
+// export default connect(mapStateToProps, {
+//     editMeal,
+//     addMeal,
+//     deleteMeal,
+//     addFood,
+//     editFood,
+//     deleteFood,
+// })(Meals);
+
+
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import "./sidebar.css";
@@ -37,12 +37,12 @@ export default function Sidebar(props) {
 
   return (
     <div>
-      <img className="logo" src="/logo.svg"></img>
+      <img className="logo" src="/logo.svg" alt='logo'/>
       <table className="sidebar-table">
         <thead>
           <tr>
             <th className="sidebar-img-cell">
-              <img className="sidebar-img" src="/total-dark-theme.svg" />
+              <img className="sidebar-img" src="/total-dark-theme.svg"  alt='total'/>
             </th>
             <th className="sidebar-title-cell">Total Cal:</th>
             <th className="sidebar-cal-cell">
@@ -53,7 +53,7 @@ export default function Sidebar(props) {
         <tbody>
           <tr>
             <td className="sidebar-img-cell">
-              <img className="sidebar-img" src="/meal-dark-theme.svg" />
+              <img className="sidebar-img" src="/meal-dark-theme.svg" alt='meal'/>
             </td>
             <td className="sidebar-title-cell">Cal Intake:</td>
             <td className="sidebar-cal-cell">{totalCalIntake}</td>
@@ -62,7 +62,7 @@ export default function Sidebar(props) {
         <tbody>
           <tr>
             <td className="sidebar-img-cell">
-              <img className="sidebar-img" src="/fire-dark-theme.svg" />
+              <img className="sidebar-img" src="/fire-dark-theme.svg" alt='fire' />
             </td>
             <td className="sidebar-title-cell">Cal Burned:</td>
             <td className="sidebar-cal-cell">{totalCalBurned}</td>
