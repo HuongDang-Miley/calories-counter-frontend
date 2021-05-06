@@ -3,7 +3,7 @@ import React, { connect, useState } from 'react'
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
 import { 
-    handleSelectMeal,
+    addMeal,
     showAllMeals,
     editMeal,
     deleteMeal,
@@ -21,7 +21,7 @@ export default function Meals(props) {
     return (
         <div>
             <div className='selector-wrapper' >
-                <select onChange={(event) => props.handleSelectMeal(event.target.value)}>
+                <select onChange={(event) => props.addMeal(props.userId, event.target.value)}>
                     <option value='none' defaultValue hidden>Add A Meal</option>
                     <option value="BREAKFAST">Breakfast</option>
                     <option value="BRUNCH">Brunch</option>

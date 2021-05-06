@@ -50,7 +50,7 @@ const App = (props) => {
               deleteMeal={props.deleteMeal}
               editFood={props.editFood}
               editMeal={props.editMeal}
-              handleSelectMeal={props.handleSelectMeal}
+              addMeal={props.addMeal}
             />
           </Route> */}
 
@@ -75,7 +75,7 @@ const App = (props) => {
               deleteMeal={props.deleteMeal}
               editFood={props.editFood}
               editMeal={props.editMeal}
-              handleSelectMeal={props.handleSelectMeal}
+              addMeal={props.addMeal}
             />
           </div> */}
       {/* <div className='workout-wrapper'>
@@ -86,7 +86,7 @@ const App = (props) => {
               deleteMeal={props.deleteMeal}
               editFood={props.editFood}
               editMeal={props.editMeal}
-              handleSelectMeal={props.handleSelectMeal}
+              addMeal={props.addMeal}
             /> */}
       {/* <Workout /> */}
       {/* </div>  */}
@@ -131,7 +131,7 @@ const mapDispatchToProps = (dispatch) => {
       }),
     editMeal: (targetMealId, name) =>
       dispatch({ type: "EDIT_MEAL", targetMealId: targetMealId, name: name }),
-    handleSelectMeal: async (mealType) => {
+    addMeal: async (mealType) => {
       dispatch({ type: "ADD_MEAL", mealType: mealType });
     },
   };

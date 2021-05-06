@@ -14,8 +14,8 @@ import { v4 as uuidv4 } from "uuid";
 import jwtDecode from 'jwt-decode';
 import '../../App.css'
 import '../sidebar/sidebar.css'
-import { 
-  handleSelectMeal,
+import {
+  addMeal,
   showAllMeals,
   editMeal,
   deleteMeal,
@@ -24,7 +24,8 @@ import {
   deleteFood,
   addWorkout,
   editWorkout,
-  deleteWorkout} from '../../stores/actions/mealActionsCreator'
+  deleteWorkout
+} from '../../stores/actions/mealActionsCreator'
 
 const Home = (props) => {
   let [userId, setUserId] = useState('')
@@ -36,13 +37,9 @@ const Home = (props) => {
     let user = jwtDecode(getToken)
     setUserId(user.id)
     setIsAuth(true)
-    props.showAllMeals()
-    props.handleSelectMeal('BREAKFAST')
-
+    props.showAllMeals(user.id)
   }, []);
 
-  // console.log(data)
-  // console.log(allMeals)
 
 
   return (
@@ -68,13 +65,14 @@ const Home = (props) => {
             <div className='meals-n-workout-wrapper'>
               <div className='meals-wrapper'>
                 <Meals
+                  userId={userId}
                   meals={props.meals}
                   addFood={props.addFood}
                   deleteFood={props.deleteFood}
                   deleteMeal={props.deleteMeal}
                   editFood={props.editFood}
                   editMeal={props.editMeal}
-                  handleSelectMeal={props.handleSelectMeal}
+                  addMeal={props.addMeal}
                 />
               </div>
               <div className='workout-wrapper'>
@@ -140,7 +138,7 @@ const mapStateToProps = (state) => {
 //   }),
 // editMeal: (targetMealId, name) =>
 //   dispatch({ type: "EDIT_MEAL", targetMealId: targetMealId, name: name }),
-// handleSelectMeal: async (mealType) => {
+// addMeal: async (mealType) => {
 //   dispatch({ type: "ADD_MEAL", mealType: mealType });
 // },
 
@@ -169,7 +167,7 @@ const mapStateToProps = (state) => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps, {
-  handleSelectMeal,
+  addMeal,
   showAllMeals,
   editMeal,
   // addMeal,
