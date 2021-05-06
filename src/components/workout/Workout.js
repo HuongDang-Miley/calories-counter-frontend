@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import './workout.css'
-import WorkoutCard from './workoutCard/WorkoutCard'
+import WorkoutCard from './WorkoutCard'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 export default function Workout(props) {
@@ -41,10 +41,7 @@ export default function Workout(props) {
                         <tr key={workout.id}>
                             <WorkoutCard
                                 userId={props.userId}
-                                key={workout.id}
                                 workout={workout}
-                                deleteWorkout={props.deleteWorkout}
-                                editWorkout={props.editWorkout}
                             />
                         </tr>
                     ))}
@@ -68,3 +65,5 @@ export default function Workout(props) {
         </div>
     )
 }
+
+

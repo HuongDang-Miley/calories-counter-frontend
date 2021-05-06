@@ -5,18 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 import axios from 'axios'
 
 
-
 const initialState = {
     meals: [],
 }
 
-
 const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "SHOW_ALL_DATA":
-            console.log("SHOW_ALL_DATA action", action)
 
-            // return state
             return {
                 ...state,
                 meals: action.meals,
@@ -103,14 +99,12 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case "EDIT_MEAL":
-            console.log(action)
+            // console.log(action)
             let updateMeal = state.meals.map(meal => {
                 if (meal.id === action.targetMealId) {
                     return { ...meal, mealType: action.newname }
                 } else { return meal }
             })
-
-            console.log('updateMeal', updateMeal)
 
             axios.post(`http://localhost:4000/api/data/update-meals`, { userId: action.userId, meals: updateMeal })
 

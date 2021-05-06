@@ -2,10 +2,15 @@ import React, { useRef, useState } from 'react'
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import { connect } from "react-redux";
+import {
+    showAllData,
+    addWorkout,
+    editWorkout,
+    deleteWorkout,
+} from '../../stores/actions/mealActionsCreator'
 
-
-export default function WorkoutCard(props) {
-
+function WorkoutCard(props) {
     const [showEdit, setShowEdit] = useState(false)
     let nameRef = useRef()
     let calRef = useRef()
@@ -44,3 +49,14 @@ export default function WorkoutCard(props) {
         </>
     )
 }
+
+const mapStateToProps = (state) => { return state}
+
+export default connect(mapStateToProps, {
+    showAllData,
+    addWorkout,
+    editWorkout,
+    deleteWorkout,
+})(WorkoutCard);
+
+

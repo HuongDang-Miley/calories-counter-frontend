@@ -11,12 +11,13 @@ const workoutReducer = (state = initialState, action) => {
 
         case "SHOW_ALL_DATA":
             console.log("SHOW_ALL_DATA action", action)
-            // return state
             return {
                 ...state,
                 workouts: action.workouts,
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case 'DELETE_ALL_WORKOUTS':
             axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: [] })
             return {
@@ -24,7 +25,8 @@ const workoutReducer = (state = initialState, action) => {
                 workouts: []
             }
 
-        // adding new workout
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case "ADD_WORKOUT":
             const newWorkout = {
                 name: action.newName,
@@ -36,18 +38,16 @@ const workoutReducer = (state = initialState, action) => {
             return {
                 ...state,
                 workouts: [...state.workouts, newWorkout]
-
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
 
         case "DELETE_WORKOUT":
-            console.log(action)
-
+            // console.log(action)
             const newArr = state.workouts.filter((currEl) => {
                 return currEl.id !== action.targetId;
             });
-
-            console.log('newArr', newArr)
 
             axios.post(`http://localhost:4000/api/data/update-workout`, { userId: action.userId, workouts: newArr })
 
@@ -56,8 +56,10 @@ const workoutReducer = (state = initialState, action) => {
                 workouts: newArr
             }
 
+        //=====================================================================================================================            
+        //=====================================================================================================================            
         case "EDIT_WORKOUT":
-            console.log(action)
+            // console.log(action)
             let updateArr = state.workouts.map((item) => {
                 if (item.id === action.targetId) {
                     return {
