@@ -15,6 +15,7 @@ import jwtDecode from 'jwt-decode';
 import '../../App.css'
 import '../sidebar/sidebar.css'
 import { 
+  handleSelectMeal,
   showAllMeals,
   editMeal,
   deleteMeal,
@@ -29,7 +30,6 @@ const Home = (props) => {
   let [userId, setUserId] = useState('')
   let [isAuth, setIsAuth] = useState(false)
 
-  console.log(props)
 
   useEffect(() => {
     let getToken = localStorage.getItem("jwtToken");
@@ -37,6 +37,7 @@ const Home = (props) => {
     setUserId(user.id)
     setIsAuth(true)
     props.showAllMeals()
+    props.handleSelectMeal('BREAKFAST')
 
   }, []);
 
@@ -168,6 +169,7 @@ const mapStateToProps = (state) => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default connect(mapStateToProps, {
+  handleSelectMeal,
   showAllMeals,
   editMeal,
   // addMeal,

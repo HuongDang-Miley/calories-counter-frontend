@@ -19,11 +19,12 @@ export const register = (username, email, password) => async (dispatch) => {
     });
     alert(payload.data.message);
   } catch (e) {
-    dispatch({
-      type: actionTypes.AUTH_USER_REGISTER_SUCCESSFUL,
-      message: e.response.data.message,
-    });
-    alert(e.response.data.message);
+    // dispatch({
+    //   type: actionTypes.AUTH_USER_REGISTER_SUCCESSFUL,
+    //   message: e.response.data.message,
+    // });
+    // alert(e.response.data.message);
+    alert(e);
   }
 }; //-------------------------------------------------register-----------------------------end
 

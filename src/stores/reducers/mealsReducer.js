@@ -122,13 +122,17 @@ const mealsReducer = (state = initialState, action) => {
 
 
         case 'DELETE_MEAL':
+            console.log('state.meals', state.meals)
+            
             let deleteMeal = state.meals.filter(meal => meal.id !== action.targetMealId)
+            
             return {
                 ...state,
                 meals: deleteMeal
             }
 
         case 'ADD_MEAL':
+            console.log(action)
             return {
                 ...state,
                 meals: [

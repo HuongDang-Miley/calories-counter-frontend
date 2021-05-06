@@ -9,6 +9,7 @@ import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 export default function MealCard(props) {
 
+    console.log()
     const [showEdit, setShowEdit] = useState(false)
     const [selectMeal, setSelectMeal] = useState(null)
     let foodRef = useRef()

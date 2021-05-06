@@ -2,6 +2,17 @@ import React, { connect, useState } from 'react'
 
 import './meals.css'
 import MealCard from './mealCard/MealCard.js'
+import { 
+    handleSelectMeal,
+    showAllMeals,
+    editMeal,
+    deleteMeal,
+    addFood,
+    editFood,
+    deleteFood,
+    addWorkout,
+    editWorkout,
+    deleteWorkout} from '../../stores/actions/mealActionsCreator'
 
 
 
@@ -34,4 +45,7 @@ export default function Meals(props) {
         </div>
     )
 }
+
+
+  
 

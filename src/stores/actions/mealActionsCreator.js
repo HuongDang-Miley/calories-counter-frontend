@@ -6,9 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 
 // =========================== MEALS FUNCTION (for mealReducer)===========================
 
-export const showAllMeals = () => async dispatch => {
+export const showAllMeals = (userId) => async dispatch => {
     // let response = await axios.get('http://jsonplaceholder.typicode.com/posts')
-    let response = await axios.get('http://localhost:4000/api/meals/view-meals/606e944ed1859c59c0d21a85')
+    // let response = await axios.get('http://localhost:4000/api/meals/view-meals/606e944ed1859c59c0d21a85')
+    let response = await axios.get(`http://localhost:4000/api/meals/view-meals/${userId}`)
+    console.log('response.data.meals', response.data.meals)
     dispatch({
         type: "SHOW_ALL_MEALS",
         meals: response.data.meals
@@ -31,9 +33,10 @@ export const deleteFood = (targetMealId, targetFoodId) => dispatch => {
     })
 }
 export const deleteMeal = (targetMealId) => dispatch => {
+    console.log('targetMealId in action creator', targetMealId)
     dispatch({
         type: "DELETE_MEAL",
-        targetMealid: targetMealId
+        targetMealId: targetMealId
     })
 }
 
@@ -55,10 +58,11 @@ export const editMeal = (targetMealId, name) => dispatch => {
     })
 }
 
-export const handleSelectMeal = async (mealType) => dispatch => {
+export const handleSelectMeal =  (mealType) => dispatch => {
+    console.log('mealType', mealType)
     dispatch({
         type: "ADD_MEAL",
-        mealtype: mealType
+        mealType: mealType
     });
 }
 
